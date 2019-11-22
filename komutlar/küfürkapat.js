@@ -2,25 +2,22 @@ const Discord = require("discord.js");
 const db = require("quick.db")
 exports.run = async (client, message, args) => {
   console.log(await db.fetch(`kufurKanal_${message.guild.id}`))
-  if (await db.fetch(`kufurKanal_${message.guild.id}`).includes(message.channel.id)) {
-    return message.channel.send(`<@${message.author.id}> Sanırım bu özellik zaten açıkmış :)`)
-  } else {
   
-  await db.push(`kufurKanal_${message.guild.id}`, message.channel.id)
+  await db.delete(`kufurKanal_${message.guild.id}`)
   message.channel.send(`<@${message.author.id}> Bu özellik **sadece bu kanalda** aktif edildi.`)
   
-  }
+  
 }
 
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["küfüraç"],
+  aliases: ["küfürkapat"],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'küfür-aç',
+  name: 'küfür-kapat',
   description: 'Botta bulunan tüm komutları gösterir',
   usage: 'komutlar'
 };
