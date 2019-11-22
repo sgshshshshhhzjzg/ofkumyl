@@ -4,7 +4,7 @@ exports.run = async(client, message, args) => {
  
  const Embed = new Discord.RichEmbed()
  .setAuthor("MC-AT", client.user.avatarURL)
- .setTitle(`[MC-AT BOT](https://discordapp.com/invite/hqA9tNF)`)
+ .setTitle(`[MC-AT BOT](https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8)`)
  .setDescription(`
 **!yardım**, ile yardım alabilirsiniz.
 Örnek komut kullanımı: \`!küfüraç\`
