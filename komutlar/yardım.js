@@ -1,14 +1,23 @@
 const Discord = require('discord.js'); 
  
-module.exports.run = async(client, message, args) => {
+exports.run = async(client, message, args) => {
  
- 
+ const Embed = new Discord.RichEmbed()
+ .setAuthor("MC-AT", client.user.avatarURL)
+ .setTitle(`[MC-AT BOT](https://discordapp.com/invite/hqA9tNF)`)
+ .setDescription(`
+**!yardım**, ile yardım alabilirsiniz.
+Örnek komut kullanımı: \`!küfüraç\`
+Botu davet etmek için: \`!davet\`
+`)
+ .setFooter("© Mcadventuretime.com", client.user.avatarURL)
+ message.channel.send(Embed)
 }
 
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["sayfalıyardım","pagehelp","h","help"],
+  aliases: ["yardım","help","h","help"],
   permLevel: 0
 };
 
