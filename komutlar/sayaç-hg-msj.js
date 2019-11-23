@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const db = require('quick.db')
 exports.run = (client, message, args) => { 
-  if (!db.has(`premium_${message.guild.id}`) == false) {
+  if (db.has(`premium_${message.guild.id}`) == false) {
     message.channel.send(`<@${message.author.id}> Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Alabilirsiniz \`!premium\``)
   } else {
     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
