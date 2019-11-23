@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const moment = require('moment')
 const ayarlar = require('../ayarlar.json');
 
-exports.run = (bot, message, params) => {
+exports.run = (blientot, message, params) => {
   let aylar = {
 			"01": "Ocak",
 			"02": "Şubat",
@@ -43,10 +43,10 @@ exports.run = (bot, message, params) => {
    .addField('Güvenlik Seviyesi:', message.guild.verificationLevel, true)
    .addField('Ban Sayısı:',ban.size,false)
    .addField('Kanal Sayısı: ['+message.guild.channels.size+']', `:sound: ${message.guild.channels.filter(chan => chan.type === 'voice').size} :speech_balloon: ${message.guild.channels.filter(chan => chan.type === 'text').size}`, true)
-   .addField('Üye Bilgisi : ['+message.guild.memberCount+']', `${message.guild.members.filter(o => o.presence.status === 'online').size}${message.guild.members.filter(i => i.presence.status === 'idle').size}${message.guild.members.filter(dnd => dnd.presence.status === 'dnd').size}${message.guild.members.filter(off => off.presence.status === 'offline').size}`, false)
+   .addField('Üye Bilgisi : ['+message.guild.memberCount+']', `${client.emojis.get('647797624598036510')}${message.guild.members.filter(o => o.presence.status === 'online').siz`,false))
    .addField('Sunucu Bölgesi:', message.guild.region, true) 
    .addField('Rol sayısı',message.guild.roles.size,true)
-   .addField('Sahibi:', message.guild.owner+` (${message.guild.ownerID})`, false)
+   .addField('Sahibi:', message.guild.owner+``+${message.guild.owner+`D})`, false)
    .addField('Oluşturulma Tarihi', `${günler[moment(message.guild.createdAt).format('DD')]}, ${aylar[moment(message.guild.createdAt).format('MM')]}  ${moment(message.guild.createdAt).format('YYYY h:mm:ss')}`,false)
    .addField('Oluşturma tarihi:', message.guild.createdAt, false)
   
