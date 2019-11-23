@@ -11,12 +11,12 @@ let logkanal = await db.fetch(`guvenlik${message.guild.id}`)
      const embed = new Discord.RichEmbed()
      .setAuthor("MC-EŞEK",client.user.avatarURL)
      .setTitle('MC-EŞEK BOT')
-     .setURL('')
+     .setURL('https://discord.gg/bWjWHK')
      .setColor('BLUE')
      .addField('Sunucu koruma sistemlerinin bulunduğu bölüm;','!koruma-log #logkanal')
-     .addField('```js\nKoruma kayıtlarının gönderileceği kanalı belirler.```','!koruma-banlimit <sayı>')
-     .addField('!koruma-kanallimit <sayı>','```js\n30 dakika içerisinde bir üye tarafından belirtilen sayıdan fazla kanal silerse üye sunucudan atılır.```')
-     .addField('!koruma-rollimit <sayı>','```js\n30 dakika içerisinde bir üye tarafından belirtilen sayıdan fazla rol silinirse silen üye sunucudan atılır.```') 
+     .addField(' ```Koruma kayıtlarının gönderileceği kanalı belirler.``` ','!koruma-banlimit <sayı>')
+     .addField('!koruma-kanallimit <sayı>','```30 dakika içerisinde bir üye tarafından belirtilen sayıdan fazla kanal silerse üye sunucudan atılır.```')
+     .addField('!koruma-rollimit <sayı>','```30 dakika içerisinde bir üye tarafından belirtilen sayıdan fazla rol silinirse silen üye sunucudan atılır.```') 
      .addField('!koruma-banlimit-sistemi <aç/kapat>','Ban koruma özelliğini açar kapatır.')
      .addField('!koruma-kanal-sistemi <aç/kapat>','Kanal koruma özelliğini açar kapatır.')
      .addField('!koruma-rollimit-sistemi <aç/kapat>','Rol koruma özelliğini açar kapatır.') 
@@ -24,7 +24,7 @@ let logkanal = await db.fetch(`guvenlik${message.guild.id}`)
      .addField('!spambotkorumasi','Spambot korumasını gösterir.')
      .addField('!güvenlikseviyesi','Sunucuya katılan üyelerin güvenilir olup olmadığını gösterir.')
      .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-     .setTimestamp
+     .setTimestamp()
      message.channel.send(embed)
     }
   if (args[0] === "sıfırla" || args[0] === "kapat") {
@@ -36,7 +36,7 @@ let logkanal = await db.fetch(`guvenlik${message.guild.id}`)
     return
   }
   
-if (!logk) return message.channel.send('Güvenlik kanalını bulamadım  Kullanım `!!güvenlik #kanal`');
+  if (!logk) return message.channel.send('Güvenlik kanalını bulamadım  Kullanım `!!güvenlik #kanal`');
  
 
    db.set(`guvenlik${message.guild.id}`, logk.id)
