@@ -12,7 +12,7 @@ let kalan = args[1] - message.guild.memberCount
  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`<a:iptal:626445972620443648> Bu komutu     kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
  
  if(!kanal) return message.channel.send(`
-Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug:
+Lütfen Bir Kanal Belirt. :shrug:
 Örnek Kullanım : 
 \`\`\`
 !sayaç-ayarla #kanal <Sayı>
@@ -21,9 +21,25 @@ Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug:
 Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
 `)
   
- if(isNaN(args[1])) return message.channel.send('Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug: \nÖrnek Kullanım : \n```$sayaç-ayarla #kanal <Sayı>```')
+ if(isNaN(args[1])) return message.channel.send(`
+Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug:
+Örnek Kullanım : 
+\`\`\`
+!sayaç-ayarla #kanal <Sayı>
+\`\`\`
+
+Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
+`)
  
- if(message.guild.memberCount > args[1]) return message.channel.send('Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug: \nÖrnek Kullanım : \n```$sayaç-ayarla #kanal <Sayı>```')
+ if(message.guild.memberCount > args[1]) return message.channel.send(`
+Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug:
+Örnek Kullanım : 
+\`\`\`
+!sayaç-ayarla #kanal <Sayı>
+\`\`\`
+
+Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
+`)
 
 ////////////////////////////////////////////////////////
   
