@@ -8,12 +8,10 @@ exports.run = async(client, message, args) => {
   
   if (!kanal)  {
     return message.channel.send(`
-${client.emojis.get("647760202875142154")} Bancı kanalını Ayarlamak İçin, Bancı Verilecek kanalü Etiketlemelisiniz
-Örnek: \`!yasaklama-yetkilisi @bansorumlusu\`
-
+${client.emojis.get("647760202875142154")} Bu Özelliği Ayarlamam İçin Bir Kanal Etiketlemelisin Örnek: \`!yasaklama-kanal-ayarla #kanal\`
 `)
   }
-  message.channel.send(`${client.emojis.get("647746144155467786")} ${kanal} kanalü Olan Her Kullanıcı İnsanları !ban Komutu İle Banlayabilicektir kanalü Verirken Dikkatli Olunuz.`)
+  message.channel.send(`${client.emojis.get("647746144155467786")} Ban Kayıt Kanalını ${kanal} Olarak Ayarladım.`)
   db.set(`yasaklamaKanal_${message.guild.id}`, kanal.id)
 };
 

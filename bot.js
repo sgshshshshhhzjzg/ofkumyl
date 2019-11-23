@@ -213,6 +213,42 @@ client.on("guildBanAdd", async(guild, user) => {
         }
       }
     }
+  
 })
+client.on('message', async message => {
+    if (message.content === '!test') {
+      message.channel.send('Test girişi yaptın'); 
+      client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
+    }
+});
 //
+client.on('guildMemberAdd',async member => {
+  let user = client.users.get(member.id);
+  let chan = client.channels.get(db.fetch(`guvenlik${member.guild.id}`)) 
+       const Canvas = require('canvas')
+       const canvas = Canvas.createCanvas(360,100);
+       const ctx = canvas.getContext('2d');
+  
+  const resim1 = await Canvas.loadImage('https://i.hizliresim.com/gPMMrQ.png')
+    const resim2 = await Canvas.loadImage('https://i.hizliresim.com/9YZZaO.png')
+    const kurulus = new Date().getTime() - user.createdAt.getTime();
+    const gün = moment.duration(kurulus).format("D")   
+    var kontrol;
+      if (kurulus > 2629800000) kontrol = resim2
+    if (kurulus < 2629800000) kontrol = resim1
+
+  const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+  ctx.drawImage(kontrol,0,0,canvas.width, canvas.height)
+  ctx.beginPath();
+	ctx.lineWidth = 4;
+  ctx.fill()
+	ctx.lineWidth = 4;
+  ctx.arc(180, 46, 36, 0, 2 * Math.PI);
+	ctx.clip();
+  ctx.drawImage(avatar, 143,10, 73, 72  );
+
+   
+       const attachment = new Discord.Attachment(canvas.toBuffer(), 'STARKs-güvenlik.png');
+    chan.send(attachment)
+});
 client.login(ayarlar.token);
