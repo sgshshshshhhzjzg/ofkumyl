@@ -41,12 +41,12 @@ Sunucunuz İçin Koruma Sistemleri.
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["yardım","help","h","help"],
+  aliases: ["31"],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'yardım',
+  name: 'test',
   description: 'Yardım Menüsünü Gösterir.',
   usage: 'yardım'
 };

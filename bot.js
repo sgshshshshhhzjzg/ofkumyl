@@ -114,9 +114,21 @@ client.elevation = message => {
     let permlvl = 0;
     if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
     if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-    if (message.author.id === ayarlar.sahip) permlvl = 4;
+    if (message.author.id === ayarlar.sahip) permlvl = 5;
     return permlvl;
 };
+
+client.on("guildMemberAdd", async member => {
+  let kanal = await db.fetch(`antiraidK_${member.guild.id}`);
+  if (!kanal) return;
+  
+  if (member.user.bot == true) {
+    if (db.has(`botizin_${member.guild.id}`) == true) {
+      client.channels.get(kanal).send(`**${member.user.username}\`)
+    }
+  }
+});
+
 
 client.on("guildMemberAdd", async member => {
   let kanal = await db.fetch(`otoRK_${member.guild.id}`);
