@@ -9,7 +9,7 @@ let kanal = message.mentions.channels.first()
 let sayı = args[1]
 let kalan = args[1] - message.guild.memberCount
 /////////////////////////////////////
- if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`<a:iptal:626445972620443648> Bu komutu     kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
+ if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
  
  if(!kanal) return message.channel.send(`
 Lütfen Bir Kanal Belirt. :shrug:
@@ -44,7 +44,7 @@ Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
 ////////////////////////////////////////////////////////
   
   message.channel.send(`╔▬▬▬▬▬▬▬▬Sayaç▬▬▬▬▬▬▬▬▬
-║► ${client.emojis.get("647746144155467786")} Sayaç Aktif Edildi (Kartalya)
+║► ${client.emojis.get("647746144155467786")} Sayaç Aktif Edildi.
 ║► ${client.emojis.get("647746144155467786")} **${args[1]}** Olarak Güncelledim! 
 ║► ${client.emojis.get("647746144155467786")} Kayıt Kanalını **${kanal}** Olarak Güncelledim! 
 ║► ${client.emojis.get("647746144155467786")} ${args[1]} Kişi Olmaya Son :fire: **${kalan}** :fire: Kişi Kaldı!
@@ -52,7 +52,7 @@ Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
 
  ///////////////////////////////////////////////
   
-  db.set(`sskanal_${message.guild.id}`, kanal)  
+  db.set(`sskanal_${message.guild.id}`, kanal.id)  
   db.set(`ssayı_${message.guild.id}`, sayı) 
 };
 exports.conf = {

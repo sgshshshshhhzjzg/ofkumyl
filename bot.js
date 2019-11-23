@@ -119,41 +119,42 @@ client.elevation = message => {
 };
 
 client.on("guildMemberAdd", async member => {
-  let kanal = await db.fetch(`sskanal_${member.guild.id}`);
+  const kanal = await db.fetch(`sayacK_${member.guild.id}`);
   if (!kanal) return;
-  let sayaç = await db.fetch(`ssayı_${member.guild.id}`);
-  let mesaj = await db.fetch(`sayachgmsj_${member.guild.id}`).replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`);
-  let sonuç = sayaç - member.guild.memberCount;
-  ///....
+  const sayaç = await db.fetch(`sayacS_${member.guild.id}`);
+    const sonuç = sayaç - member.guild.memberCount;
+  const mesaj = await db.fetch(`sayacHG_${member.guild.id}`).replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`);
+    ///....
 
   ///....
   if (!mesaj) {
     client.channels.get(kanal).send(":loudspeaker: :inbox_tray: Kullanıcı Katıldı! `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz! `" + member.user.username + "`");
   }
 
+  if (member.guild.memberCount == sayaç) {
+    client.channels.get(kanal).send(`:loudspeaker: Sayaç Sıfırlandı!`)
+  }
   if (mesaj) {
-    client.channels.get(kanal.id).send(mesaj);
-    return;
+    return client.channels.get(kanal).send(mesaj);
+    
   }
 });
 client.on("guildMemberRemove", async member => {
-  let kanal = await db.fetch(`skanal_${member.guild.id}`);
-  let sayaç = await db.fetch(`ssayı_${member.guild.id}`);
-  let bbmsj = await db.fetch(`sayacbbmsj_${member.guild.id}`).replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`);
-  let sonuç = sayaç - member.guild.memberCount;
-  ///....
 
+  const kanal = await db.fetch(`sayacK_${member.guild.id}`);
+  const sayaç = await db.fetch(`sayacS_${member.guild.id}`);
+  const sonuç = sayaç - member.guild.memberCount;
+  const mesaj = await db.fetch(`sayacBB_${member.guild.id}`).replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`);
   if (!kanal) return;
   if (!sayaç) return;
     ///....
 
-  if (!bbmsj) {
-    client.channels.get(kanal).send(":loudspeaker: :outbox_tray: Kullanıcı Ayrıldı. `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz!`" + member.user.username + "`");
-    return;
-  }
+  if (!mesaj) {
+    return client.channels.get(kanal).send(":loudspeaker: :outbox_tray: Kullanıcı Ayrıldı. `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz!`" + member.user.username + "`");
+      }
 
-  if (bbmsj) {
-    client.channels.get(kanal).send(bbmsj);
+  if (mesaj) {
+    return client.channels.get(kanal).send(mesaj);
   }
 });
 
