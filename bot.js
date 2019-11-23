@@ -119,7 +119,22 @@ client.elevation = message => {
 };
 
 client.on("guildMemberAdd", async member => {
-  
+  let kanal = await db.fetch(`otoRK_${member.guild.id}`);
+  let rol = await db.fetch(`otoRL_${member.guild.id}`);
+  let mesaj = db.fetch(`otoRM_${member.guild.id}`);
+  if (!kanal) return;
+
+  if (!mesaj) {
+    client.channels.get(kanal).send(":loudspeaker: :inbox_tray: Otomatik Rol Verildi Seninle Beraber `" + member.guild.memberCount + "` Kişiyiz! Hoşgeldin! `" + member.user.username + "`");
+    member.addRole(rol);
+    return;
+  }
+
+  if (mesaj) {
+    var mesajs = mesaj.replace("-uye-", `${member.user.tag}`).replace("-rol-", `${member.guild.roles.get(rol).name}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`);
+    member.addRole(rol);
+    client.channels.get(kanal).send(mesajs);
+     }
 });
 
 client.on("guildMemberAdd", async member => {
@@ -143,7 +158,8 @@ client.on("guildMemberAdd", async member => {
     await db.delete(`sayacBB_${member.guild.id}`)
   }
   if (mesaj) {
-    return client.channels.get(kanal).send(mesaj.replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`));
+    const mesaj31 = mesaj.replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`)
+    return client.channels.get(kanal).send(mesaj31);
     
   }
 });
@@ -162,7 +178,8 @@ client.on("guildMemberRemove", async member => {
       }
 
   if (mesaj) {
-    return client.channels.get(kanal).send(mesaj.replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`));
+    const mesaj31 = mesaj.replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`)
+    return client.channels.get(kanal).send(mesaj31);
   }
 });
 
