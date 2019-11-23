@@ -52,8 +52,8 @@ Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
 
  ///////////////////////////////////////////////
   
-  db.set(`sskanal_${message.guild.id}`, kanal.id)  
-  db.set(`ssayı_${message.guild.id}`, sayı) 
+  db.set(`sayacK_${message.guild.id}`, kanal.id)  
+  db.set(`sayacS_${message.guild.id}`, sayı) 
 };
 exports.conf = {
   enabled: true,  

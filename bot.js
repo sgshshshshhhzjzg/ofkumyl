@@ -119,23 +119,31 @@ client.elevation = message => {
 };
 
 client.on("guildMemberAdd", async member => {
+  
+});
+
+client.on("guildMemberAdd", async member => {
   const kanal = await db.fetch(`sayacK_${member.guild.id}`);
   if (!kanal) return;
   const sayaç = await db.fetch(`sayacS_${member.guild.id}`);
     const sonuç = sayaç - member.guild.memberCount;
-  const mesaj = await db.fetch(`sayacHG_${member.guild.id}`).replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`);
+  const mesaj = await db.fetch(`sayacHG_${member.guild.id}`)
     ///....
 
   ///....
   if (!mesaj) {
-    client.channels.get(kanal).send(":loudspeaker: :inbox_tray: Kullanıcı Katıldı! `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz! `" + member.user.username + "`");
+    return client.channels.get(kanal).send(":loudspeaker: :inbox_tray: Kullanıcı Katıldı! `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz!" + client.emojis.get("647746144155467786") + "`" + member.user.username + "`");
   }
 
   if (member.guild.memberCount == sayaç) {
-    client.channels.get(kanal).send(`:loudspeaker: Sayaç Sıfırlandı!`)
+    return client.channels.get(kanal).send(`:loudspeaker: Sayaç Sıfırlandı! \`${member.guild.memberCount}\` Kişiyiz!`)
+    await db.delete(`sayacK_${member.guild.id}`)
+    await db.delete(`sayacS_${member.guild.id}`)
+    await db.delete(`sayacHG_${member.guild.id}`)
+    await db.delete(`sayacBB_${member.guild.id}`)
   }
   if (mesaj) {
-    return client.channels.get(kanal).send(mesaj);
+    return client.channels.get(kanal).send(mesaj.replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`));
     
   }
 });
@@ -144,17 +152,17 @@ client.on("guildMemberRemove", async member => {
   const kanal = await db.fetch(`sayacK_${member.guild.id}`);
   const sayaç = await db.fetch(`sayacS_${member.guild.id}`);
   const sonuç = sayaç - member.guild.memberCount;
-  const mesaj = await db.fetch(`sayacBB_${member.guild.id}`).replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`);
+  const mesaj = await db.fetch(`sayacBB_${member.guild.id}`)
   if (!kanal) return;
   if (!sayaç) return;
     ///....
 
   if (!mesaj) {
-    return client.channels.get(kanal).send(":loudspeaker: :outbox_tray: Kullanıcı Ayrıldı. `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz!`" + member.user.username + "`");
+    return client.channels.get(kanal).send(":loudspeaker: :outbox_tray: Kullanıcı Ayrıldı. `" + sayaç + "` Kişi Olmamıza `" + sonuç + "` Kişi Kaldı `" + member.guild.memberCount + "` Kişiyiz!" + client.emojis.get("647760202875142154") + "`" + member.user.username + "`");
       }
 
   if (mesaj) {
-    return client.channels.get(kanal).send(mesaj);
+    return client.channels.get(kanal).send(mesaj.replace("-uye-", `${member.user.tag}`).replace("-server-", `${member.guild.name}`).replace("-uyesayisi-", `${member.guild.memberCount}`).replace("-botsayisi-", `${member.guild.members.filter(m => m.user.bot).size}`).replace("-bolge-", `${member.guild.region}`).replace("-kanalsayisi-", `${member.guild.channels.size}`).replace("-kalanuye-", `${sonuç}`).replace("-hedefuye-", `${sayaç}`));
   }
 });
 

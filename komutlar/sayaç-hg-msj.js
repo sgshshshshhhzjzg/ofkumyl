@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
   if(mesaj.length < 5) return message.channel.send('Sayaç Hoşgeldin Mesaj Sistemi İçin En Az 5 Karakter Belirtebilirsin. `Örnek: -sayac-hg-msg -server-, Sunucumuza Hoşgeldin, -uye-! -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı!, **-uyesayisi-** Kişiyiz.`')
   
  message.channel.send(client.emojis.get("647746144155467786") + ' Sayaç Hoşgeldin mesajını `'+mesaj+'` Olarak ayarladım.') 
- db.set(`sychgmsj_${message.guild.id}`, mesaj)  
+ db.set(`sayacHG_${message.guild.id}`, mesaj)  
     
   }
   
