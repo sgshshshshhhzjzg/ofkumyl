@@ -43,13 +43,12 @@ exports.run = (bot, message, params) => {
    .addField('Güvenlik Seviyesi:', message.guild.verificationLevel, true)
    .addField('Ban Sayısı:',ban.size,false)
    .addField('Kanal Sayısı: ['+message.guild.channels.size+']', `:sound: ${message.guild.channels.filter(chan => chan.type === 'voice').size} :speech_balloon: ${message.guild.channels.filter(chan => chan.type === 'text').size}`, true)
-   .addField('Üye Bilgisi : ['+message.guild.memberCount+']', `${message.guild.members.filter( member => member.user.bot).size} bot | ${message.guild.memberCount} üye`, false)
+   .addField('Üye Bilgisi : ['+message.guild.memberCount+']', `${message.guild.members.filter(o => o.presence.status === 'online').size}${message.guild.members.filter(i => i.presence.status === 'idle').size}${message.guild.members.filter(dnd => dnd.presence.status === 'dnd').size}${message.guild.members.filter(off => off.presence.status === 'offline').size}`, false)
    .addField('Sunucu Bölgesi:', message.guild.region, true) 
    .addField('Rol sayısı',message.guild.roles.size,true)
    .addField('Sahibi:', message.guild.owner+` (${message.guild.ownerID})`, false)
    .addField('Oluşturulma Tarihi', `${günler[moment(message.guild.createdAt).format('DD')]}, ${aylar[moment(message.guild.createdAt).format('MM')]}  ${moment(message.guild.createdAt).format('YYYY h:mm:ss')}`,false)
    .addField('Oluşturma tarihi:', message.guild.createdAt, false)
-   .addField(`Üye Bilgisi : [${message.guild.memberCount}]`, `**${message.guild.members.filter(o => o.presence.status === 'online').size}** Çevrimiçi\n**${message.guild.members.filter(i => i.presence.status === 'idle').size}** Boşta\n**${message.guild.members.filter(dnd => dnd.presence.status === 'dnd').size}** Rahatsız Etmeyin\n**${message.guild.members.filter(off => off.presence.status === 'offline').size}** Çevrimdışı/Görünmez`, true)
   
 
  
