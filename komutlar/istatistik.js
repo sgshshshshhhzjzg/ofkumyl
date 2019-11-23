@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const moment = require('moment')
-moment.lang("tr")
+
 const ayarlar = require('../ayarlar.json');
 
 exports.run = (client, message, params) => {
@@ -32,6 +32,7 @@ exports.run = (client, message, params) => {
  let guild = message.guild;
 
 
+
    const embed = new Discord.RichEmbed()
    .setColor("15f153")
    .setAuthor(message.guild.name, message.guild.iconURL)
@@ -49,7 +50,8 @@ exports.run = (client, message, params) => {
    .addField('Rol sayısı',message.guild.roles.size,true)
    .addField('Sahibi:', message.guild.owner+``+`\n(`+message.guild.ownerID+`)`, true)//elleme
    .addField('Oluşturulma Tarihi', `${günler[moment(message.guild.createdAt).format('DD')]}, ${aylar[moment(message.guild.createdAt).format('MM')]}  ${moment(message.guild.createdAt).format('YYYY h:mm:ss')}`,true)
-   .addField('Oluşturma tarihi:', message.guild.createdAt, true)
+   
+   .addField('Oluşturma tarihi:', message.guild.createdAt.toDateString().replace("Nov", "Kasım").replace("Jan", "Ocak").replace("Feb", "Şubat").replace("Mar", "Mart").replace("Fri", "Cuma").replace("Mon", "Pazartesi").replace("Sun", "Pazar").replace("Sat", "Cumartesi").replace("Tue", "Salı").replace("Wed", "Çarşamba").replace("Thu", "Perşembe"), true)
   
 
  
