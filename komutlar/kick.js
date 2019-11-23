@@ -22,14 +22,13 @@ Etiketliyorsan Bu Hatayı Alıyorsan O Üyenin Görebildiği Bir Kanalda Banlama
       return message.reply(`Hata: Sunucudan banlancak kişiyi veya ban sebebini yazmadın!`)
     }
     if (banl == db.fetch(`banP_${message.author.id}`)) {
-    message.channel.send(`<@${message.author.id}> **Hata:** Ban limitin doldu!`)  
+    return message.channel.send(`<@${message.author.id}> **Hata:** Ban limitin doldu!`)  
     } else {
     client.channels.get(log).send(`${kisi} - <@${message.author.id}> Tarafından ${sebep} Nedeniyle Sunucudan Yasaklandı. ${client.emojis.get("647746144155467786")}`)  
-    message.guild.ban(kisi.id, sebep)
-    db.add(`banP_${message.author.id}`, 1)
+    message.guild.kick(kisi.id, sebep)
+    return db.add(`banP_${message.author.id}`, 1)
     }
-    
-  } else {
+      } else {
     return message.reply("Ban Atabilmek İçin Sunucu Sahibinin Ayarladığı Role Sahip Olmalısınız.")
   } 
     
