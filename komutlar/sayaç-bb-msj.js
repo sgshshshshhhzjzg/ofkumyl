@@ -7,10 +7,10 @@ exports.run = (client, message, args) => {
     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
   
   let mesaj = args.slice(0).join(' ');
-  if(mesaj.length < 5) return message.channel.send('Sayaç Hoşgeldin Mesaj Sistemi İçin En Az 5 Karakter Belirtebilirsin. `Örnek: -sayac-hg-msg -server-, Sunucumuza Hoşgeldin, -uye-! -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı!, **-uyesayisi-** Kişiyiz.`')
+  if(mesaj.length < 5) return message.channel.send(' Sayaç Hoşgeldin Mesaj Sistemi İçin En Az 5 Karakter Belirtebilirsin. `Örnek: $sayac-bb-msg -uyetag-, Sunucumuzdan Ayrıldı, -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı. **-uyesayisi-** Kişiyiz.`')
   
- message.channel.send('<a:onaylandi:632947947121934346> Sayaç Hoşgeldin mesajını `'+mesaj+'` Olarak ayarladım.') 
- db.set(`sychgmsj_${message.guild.id}`, mesaj)  
+ message.channel.send(client.emojis.get("") + ' Sayaç Görüşürüz mesajını `'+mesaj+'` Olarak ayarladım.') 
+ db.set(`sycbbmsj_${message.guild.id}`, mesaj)  
     
   }
   
