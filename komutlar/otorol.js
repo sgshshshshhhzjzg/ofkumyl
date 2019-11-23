@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
 let yardım = new Discord.RichEmbed()  
 .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor('BLUE')
-.addField("__Sayaç Ayarlamak__", '__**-sayaç-ayarla**__ 》 **Sayacı Ayarlar.**\n Örnek: `-sayac-ayarla #logkanalı **Sayı**` \n \n __**-sayac-hg-msg **__》 **Sayaç Hoşgeldin Mesajını Ayarlar. __!Premium İçindir__**\n Örnek: `-sayac-hg-msg -server-, Sunucumuza Hoşgeldin, -uye-! -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı!, **-uyesayisi-** Kişiyiz.` \n \n __**-sayac-bb-msg**__ 》 **Sayaç Bay Bay Mesajını Ayarlar. __!Premium İçindir__**\nÖrnek: `-sayac-bb-msg -uyetag-, Sunucumuzdan Ayrıldı, -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı. **-uyesayisi-** Kişiyiz.`')
+.addField("__OTOROL Ayarlamak__", '__**-oto-rol-ayarla**__ 》 **Otorolü Ayarlar.**\n Örnek: `-oto-rol-ayarla @rolünüz #logkanalı` \n \n __**-otorol-msg **__》 **Otorol Mesajını Ayarlar. __Premium İçindir__**\n Örnek: `!otorol-msg -server-, Sunucumuza Hoşgeldin, -uye-! -rol- Adlı Rolün Başarı İle Verildi Seninle Beraber, **-uyesayisi-** Kişiyiz`')
 
   .addField('__**Kullanabileceğiniz Değişkenler**__',`
 -uye- 》 Üyeyi Etiketler.
@@ -28,7 +28,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'sayaç',
+  name: 'otorol',
   description: 'sayaç', 
   usage: 'sayaç'
 };

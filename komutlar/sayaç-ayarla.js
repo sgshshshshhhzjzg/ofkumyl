@@ -2,13 +2,9 @@ const Discord = require('discord.js');
 const db = require('quick.db')
 exports.run = (client, message, args) => { 
   
-
-  
- //////////////////////////////// 
 let kanal = message.mentions.channels.first() 
 let sayı = args[1]
 let kalan = args[1] - message.guild.memberCount
-/////////////////////////////////////
  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
  
  if(!kanal) return message.channel.send(`
@@ -41,8 +37,7 @@ Belirttiğin Sayı Çok Küçük Veya O Sayıya Zaten Ulaşmışsın :shrug:
 Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
 `)
 
-////////////////////////////////////////////////////////
-  
+ 
   message.channel.send(`╔▬▬▬▬▬▬▬▬Sayaç▬▬▬▬▬▬▬▬▬
 ║► ${client.emojis.get("647746144155467786")} Sayaç Aktif Edildi.
 ║► ${client.emojis.get("647746144155467786")} **${args[1]}** Olarak Güncelledim! 
@@ -50,7 +45,6 @@ Eğer Herşey Zorsa Siteden Kolayca Ayarla : https://www.mcadventuretime.com/dc/
 ║► ${client.emojis.get("647746144155467786")} ${args[1]} Kişi Olmaya Son :fire: **${kalan}** :fire: Kişi Kaldı!
 ╚▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`)
 
- ///////////////////////////////////////////////
   
   db.set(`sayacK_${message.guild.id}`, kanal.id)  
   db.set(`sayacS_${message.guild.id}`, sayı) 
