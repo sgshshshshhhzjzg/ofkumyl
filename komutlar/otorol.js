@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db')
 exports.run = (client, message, args) => { 
   
-let yardım = new Discord.RichEmbed()  
+const embed = new Discord.RichEmbed()  
 .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor('BLUE')
 .addField("__OTOROL Ayarlamak__", '__**-oto-rol-ayarla**__ 》 **Otorolü Ayarlar.**\n Örnek: `-oto-rol-ayarla @rolünüz #logkanalı` \n \n __**-otorol-msg **__》 **Otorol Mesajını Ayarlar. __Premium İçindir__**\n Örnek: `!otorol-msg -server-, Sunucumuza Hoşgeldin, -uye-! -rol- Adlı Rolün Başarı İle Verildi Seninle Beraber, **-uyesayisi-** Kişiyiz`')
@@ -18,7 +18,7 @@ let yardım = new Discord.RichEmbed()
 -kalanuye- 》 Hedefe Kaç Kişi Kalmış Gösterir.
 -hedefuye- 》 Hedef Rakamı Gösterir.
 `)
- message.channel.send(yardım) 
+ message.channel.send(embed) 
   };
 exports.conf = {
   enabled: true,  

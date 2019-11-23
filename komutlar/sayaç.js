@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db')
 exports.run = (client, message, args) => { 
   
-let yardım = new Discord.RichEmbed()  
+const embed = new Discord.RichEmbed()  
 .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor('BLUE')
 .addField("__Sayaç Ayarlamak__", '__**-sayaç-ayarla**__ 》 **Sayacı Ayarlar.**\n Örnek: `-sayac-ayarla #logkanalı **Sayı**` \n \n __**-sayac-hg-msg **__》 **Sayaç Hoşgeldin Mesajını Ayarlar. __!Premium İçindir__**\n Örnek: `-sayac-hg-msg -server-, Sunucumuza Hoşgeldin, -uye-! -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı!, **-uyesayisi-** Kişiyiz.` \n \n __**-sayac-bb-msg**__ 》 **Sayaç Bay Bay Mesajını Ayarlar. __!Premium İçindir__**\nÖrnek: `-sayac-bb-msg -uyetag-, Sunucumuzdan Ayrıldı, -hedefuye- Kişiye Ulaşabilmek İçin -kalanuye- Kişi Kaldı. **-uyesayisi-** Kişiyiz.`')
@@ -17,7 +17,7 @@ let yardım = new Discord.RichEmbed()
 -kalanuye- 》 Hedefe Kaç Kişi Kalmış Gösterir.
 -hedefuye- 》 Hedef Rakamı Gösterir.
 `)
- message.channel.send(yardım) 
+ message.channel.send(embed) 
   };
 exports.conf = {
   enabled: true,  
