@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 exports.run = async(client, message, args) => {
  
  const Embed = new Discord.RichEmbed()
- .setAuthor("MC-AT", client.user.avatarURL)
-
+ .setAuthor("EŞŞEK-AT", client.user.avatarURL)
+.setColor("BLUE")
  .setDescription(`
 [MC-AT BOT](https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8)
 **!yardım**, ile yardım alabilirsiniz.
