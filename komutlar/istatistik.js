@@ -1,8 +1,9 @@
 const Discord = require('discord.js');
 const moment = require('moment')
+moment.lang("tr")
 const ayarlar = require('../ayarlar.json');
 
-exports.run = (blientot, message, params) => {
+exports.run = (client, message, params) => {
   let aylar = {
 			"01": "Ocak",
 			"02": "Şubat",
@@ -41,14 +42,14 @@ exports.run = (blientot, message, params) => {
    .addField('AFK kanalı:', message.guild.afkChannel, true)
    .addField('AFK Zaman Aşımı', `${message.guild.afkTimeout} saniye`,true)
    .addField('Güvenlik Seviyesi:', message.guild.verificationLevel, true)
-   .addField('Ban Sayısı:',ban.size,false)
+   .addField('Ban Sayısı:',message.guild.fetchBans(bans => bans.size),false)
    .addField('Kanal Sayısı: ['+message.guild.channels.size+']', `:sound: ${message.guild.channels.filter(chan => chan.type === 'voice').size} :speech_balloon: ${message.guild.channels.filter(chan => chan.type === 'text').size}`, true)
-   .addField('Üye Bilgisi : ['+message.guild.memberCount+']', `${client.emojis.get('647797624598036510')}${message.guild.members.filter(o => o.presence.status === 'online').siz`,false))
+   .addField('Üye Bilgisi : ['+message.guild.memberCount+']', `${client.emojis.get('647797624598036510')}${message.guild.members.filter(o => o.presence.status === 'offline').size} ${client.emojis.get('647797712045211673')}${message.guild.members.filter(o => o.presence.status === 'idle').size} ${client.emojis.get('647797747747127318')}${message.guild.members.filter(o => o.presence.status === 'online').size} ${client.emojis.get('647797797671927818')}${message.guild.members.filter(o => o.presence.status === 'dnd').size}`,false)
    .addField('Sunucu Bölgesi:', message.guild.region, true) 
    .addField('Rol sayısı',message.guild.roles.size,true)
-   .addField('Sahibi:', message.guild.owner+``+${message.guild.owner+`D})`, false)
-   .addField('Oluşturulma Tarihi', `${günler[moment(message.guild.createdAt).format('DD')]}, ${aylar[moment(message.guild.createdAt).format('MM')]}  ${moment(message.guild.createdAt).format('YYYY h:mm:ss')}`,false)
-   .addField('Oluşturma tarihi:', message.guild.createdAt, false)
+   .addField('Sahibi:', message.guild.owner+``+`\n(`+message.guild.ownerID+`)`, true)//elleme
+   .addField('Oluşturulma Tarihi', `${günler[moment(message.guild.createdAt).format('DD')]}, ${aylar[moment(message.guild.createdAt).format('MM')]}  ${moment(message.guild.createdAt).format('YYYY h:mm:ss')}`,true)
+   .addField('Oluşturma tarihi:', message.guild.createdAt, true)
   
 
  
