@@ -9,7 +9,6 @@ let yardım = new Discord.RichEmbed()
 
   .addField('__**Kullanabileceğiniz Değişkenler**__',`
 -uye- 》 Üyeyi Etiketler.
--rol- 》 Rolün İsmini Ekler.
 -server- 》 Server İsmini Yazar.
 -uyesayisi- 》 Üye Sayısını Atar.
 -botsayisi- 》 Bot Sayısını Atar.
