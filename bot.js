@@ -139,9 +139,10 @@ client.on("guildMemberAdd", async member => {
 
 client.on('guildBanAdd', (guild, user) => {
     guild.fetchAuditLogs({ type: 22 /* MEMBER_BAN_ADD */ }).then(logs => {
-           console.log(logs.entries);
+           console.log(logs.entries.first().executor.id);
     });
 });
+
 
 client.on("guildMemberAdd", async member => {
   const kanal = await db.fetch(`sayacK_${member.guild.id}`);
