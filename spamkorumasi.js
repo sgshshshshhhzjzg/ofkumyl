@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 var MessageData = [];
 module.exports = (client, msg) => {
