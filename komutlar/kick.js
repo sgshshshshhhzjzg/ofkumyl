@@ -3,7 +3,8 @@ const db = require('quick.db')
 
 
 exports.run = async(client, message, args) => {
- const banl = db.fetch(`banlimit_${message.guild.id}`);
+ if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(`Bu komutu kullanabilmek için "\`Üyeleri Yasakla\`" yetkisine sahip olmalısın.`); 
+  const banl = db.fetch(`banlimit_${message.guild.id}`);
   const rol = db.fetch(`yasaklamaRol_${message.guild.id}`);
   const log = db.fetch(`yasaklamaKanal_${message.guild.id}`);
   if (!log) return;

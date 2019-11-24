@@ -3,7 +3,8 @@ const db = require('quick.db')
 
 
 exports.run = async(client, message, args) => {
- const banl = db.fetch(`banlimit_${message.guild.id}`);
+ if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(`Bu komutu kullanabilmek için "\`Üyeleri Yasakla\`" yetkisine sahip olmalısın.`); 
+  const banl = db.fetch(`banlimit_${message.guild.id}`);
   const rol = db.fetch(`yasaklamaRol_${message.guild.id}`);
   const log = db.fetch(`yasaklamaKanal_${message.guild.id}`);
   if (!log) return;
@@ -21,7 +22,7 @@ Etiketliyorsan Bu Hatayı Alıyorsan O Üyenin Görebildiği Bir Kanalda Banlama
     if (!sebep) {
       return message.reply(`Hata: Sunucudan banlancak kişiyi veya ban sebebini yazmadın!`)
     }
-    if (banl == db.fetch(`banP_${message.author.id}`)) {
+    if (banl >= db.fetch(`banP_${message.author.id}`)) {
     message.channel.send(`<@${message.author.id}> **Hata:** Ban limitin doldu!`)  
     } else {
     client.channels.get(log).send(`${kisi} - <@${message.author.id}> Tarafından ${sebep} Nedeniyle Sunucudan Yasaklandı. ${client.emojis.get("647746144155467786")}`)  

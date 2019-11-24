@@ -209,13 +209,13 @@ client.on("guildMemberRemove", async member => {
 //Ban Limit
 client.on("guildBanAdd", async(guild, user) => {
   const entry = await guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then(audit => audit.entries.first())
-  let yashinubanlimit = await db.fetch(`banlimit_${guild.id}`)
-  let yashinukullanıcıban = await db.fetch(`banlimitP_${entry.executor.id}`)
-  const log = db.fetch(`yasaklamaKanal_${guild.id}`);
+  let yashinubanlimit = await db.fetch(`banlimit31_${guild.id}`)
+  let yashinukullanıcıban = await db.fetch(`banlimitP31_${entry.executor.id}`)
+  const log = db.fetch(`korumaLog_${guild.id}`); 
     if(yashinubanlimit) {
       if(entry.executor.id !== guild.owner.user.id) {
         if(entry.executor.bot) return
-        await db.add(`banP_${entry.executor.id}`, 1)
+        await db.add(`banlimitP31_${entry.executor.id}`, 1)
         
         client.channels.get(log).send(`\`${user.id}\` - \`${user.tag}\` kişisi ${entry.executor} tarafından **${entry.reason ? entry.reason : "girilmedi"}** nedeni ile yasaklandı! \n${entry.executor} Banları: ${yashinukullanıcıban}`)
         //LOG Kanal varsa yukarıdaki satıra gerekli yere ID girip // kaldırabilirsiniz.
