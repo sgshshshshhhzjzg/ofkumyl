@@ -153,12 +153,6 @@ client.on("guildMemberAdd", async member => {
      }
 });
 
-client.on('guildBanAdd', (guild, user) => {
-    guild.fetchAuditLogs({ type: 22 /* MEMBER_BAN_ADD */ }).then(logs => {
-           console.log(logs.entries.first().executor.id);
-    });
-});
-
 
 client.on("guildMemberAdd", async member => {
   const kanal = await db.fetch(`sayacK_${member.guild.id}`);
@@ -226,12 +220,42 @@ client.on("guildBanAdd", async(guild, user) => {
             guild.member(entry.executor).roles.filter(a => a.hasPermission('BAN_MEMBERS')).forEach(x => guild.member(entry.executor).removeRole(x.id))
             guild.owner.user.send(`Sunucundan bir yetkili ban limitine ulaştı ve ban yetkisi olan rolleri alındı! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)
           } catch(err) { }
-          db.delete(`banP_${entry.executor.id}`)
+          db.delete(`banlimitP31_${entry.executor.id}`)
         }
       }
     }
   
 })
+
+
+//Ban Limit
+client.on("channelDelete", async(channel) => {
+  const guild = channel.guild;
+  const entry = await guild.fetchAuditLogs({type: 12}).then(audit => audit.entries.first())
+  let yashinukanallimit = await db.fetch(`klimit31_${guild.id}`)
+  let yashinukullanıcılimit = await db.fetch(`klimitP31_${entry.executor.id}`)
+  const log = db.fetch(`korumaLog_${guild.id}`); 
+    if(yashinukanallimit) {
+      if(entry.executor.id !== "500297618505859072") {
+        if(entry.executor.bot) return
+        await db.add(`klimitP31_${entry.executor.id}`, 1)
+        
+        client.channels.get(log).send(`\`${channel.name}\` adlı kanal ${entry.executor} tarafından silindi!`)
+        
+        if(yashinukullanıcılimit >= yashinukanallimit) {
+                  try {
+            client.channels.get(log).send(`Sunucundan bir yetkili kanal limitine ulaştı ve suncudan atıldı ! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)
+            guild.kick(entry.executor.id, "Ban Limit")
+            
+          } catch(err) { }
+          db.delete(`klimitP31_${entry.executor.id}`)
+        }
+      }
+    }
+  
+})
+
+
 //
 client.on('guildMemberAdd',async member => {
   let user = client.users.get(member.id);

@@ -9,8 +9,8 @@ exports.run = async(client, message, args) => {
   } else {
   
    if(!args[0] || isNaN(args[0])) return message.channel.send(`Ayarlamam İçin Bir Sayı Yazmalısın`);
-  await db.set(`banlimit31_${message.guild.id}`, args[0])
-  message.reply(`Ban Hassasiyeti **${args[0]}** Rakamına Ayarlanmıştır. Bu Rakamı Kimseyle Paylaşmayın
+  await db.set(`klimit31_${message.guild.id}`, args[0])
+  message.reply(`Kanal Hassasiyeti **${args[0]}** Rakamına Ayarlanmıştır. Bu Rakamı Kimseyle Paylaşmayın
 **ÖNEMLİ LÜTFEN OKUYUN**
 !koruma Yazıp Kullanımını Detaylıca Öğreniniz Yoksa bir İşe Yaramaz!
 `);
@@ -25,8 +25,8 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'koruma-banlimit',
-  description: 'Ban limiti.',
+  name: 'koruma-kanallimit',
+  description: 'Kanal limiti.',
   usage: 'banlimit',
   kategori: 'yetkili'
 };
