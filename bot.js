@@ -313,5 +313,15 @@ client.on('guildMemberAdd',async member => {
        const attachment = new Discord.Attachment(canvas.toBuffer(), 'STARKs-güvenlik.png');
     chan.send(attachment)
 });
+const AntiSpam = require("./spamkorumasi.js");
+const cooldown = new Set();
 
+client.on("message", msg => {
+  if (client.user.id == msg.author.id) return;
+//if (!msg.member.hasPermission("MANAGE_MESSAGES")) return; 
+  AntiSpam(client, msg);
+  if (cooldown.has(msg.author.id)) {
+    return;
+  }
+})  
 client.login(ayarlar.token);
