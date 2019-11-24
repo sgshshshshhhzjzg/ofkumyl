@@ -8,7 +8,7 @@ module.exports = (client, msg) => {
     MessageData[msg.author.id] = { MesssageNumber: 0, LastMessage: [] };
     setTimeout(() => {
       delete MessageData[msg.author.id];
-    }, 2000);
+    }, 4000);
   }
   MessageData[msg.author.id].MesssageNumber += 1;
 
@@ -19,7 +19,7 @@ module.exports = (client, msg) => {
     if (msg.deletable) msg.delete();
       const sendeddd = new Discord.RichEmbed()
         .setColor("BLUE")
-      .setAuthor("MC-EŞŞEK", client.user.setAvatar)
+      .setAuthor("MC-EŞŞEK", client.user.AvatarURL)
         .setDescription(msg.author.tag + " spam yapmayı kes yoksa susturulursun!");
       msg.channel.send(sendeddd).then(stopspam => {
         setTimeout(() => {
@@ -40,21 +40,21 @@ module.exports = (client, msg) => {
 
         const spambed = new Discord.RichEmbed()
           .setColor("BLUE")
-      .setAuthor("MC-EŞŞEK", client.user.setAvatar)
+      .setAuthor("MC-EŞŞEK", client.user.AvatarURL)
         .setDescription(msg.author.tag + " sana spam yapmayı kes yoksa susturulursun demiştim!");
         msg.channel.send(spambed);
-        msg.channel.bulkDelete("3");
+        msg.channel.bulkDelete("5");
         msg.channel.overwritePermissions(msg.author.id, {
                 SEND_MESSAGES: false
 });
       }
     }
-  if (MessageData[msg.author.id] >= 6) {
+  if (MessageData[msg.author.id] >= 7) {
     if (msg.deletable) msg.delete();
-     msg.channel.bulkDelete("4");
+     msg.channel.bulkDelete("6");
       const spambed = new Discord.RichEmbed()
         .setColor("BLUE") 
-      .setAuthor("MC-EŞŞEK", client.user.setAvatar)
+      .setAuthor("MC-EŞŞEK", client.user.AvatarURL)
       .setDescription(msg.author.tag + " sana spam yapmayı kes yoksa susturulursun demiştim!");
       msg.channel.send(spambed);
       msg.channel.overwritePermissions(msg.author.id, {
