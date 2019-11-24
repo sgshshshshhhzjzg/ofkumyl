@@ -125,9 +125,9 @@ client.on("guildMemberAdd", async member => {
       if (!gözelkanal) return
   if (member.user.bot == true) {
   if (db.fetch(`botizin_${member.guild.id}.${member.id}`) == "aktif") {
-  gözelkanal.send(member.user.username + "  adlı bota bir yetkili izin verdi eğer kaldırmak istiyorsanız **!bot-izni-kaldır botunid**.")
+  gözelkanal.send("**"+member.user.username + "** adlı bota bir yetkili izin verdi eğer kaldırmak istiyorsanız **!bot-izni-kaldır botunid**.")
   } else {
-  gözelkanal.send(member.user.username + "  adlı botu güvenlik amacı ile uzaklaştırdım. Tekrar geldiğinde uzaklaştırılmasını istemiyorsanız **!bot-izni-ver botunid**")
+  gözelkanal.send("**" + member.user.username + "** adlı botu güvenlik amacı ile uzaklaştırdım. Tekrar geldiğinde uzaklaştırılmasını istemiyorsanız **!bot-izni-ver botunid**")
   member.ban()
 }
   }
