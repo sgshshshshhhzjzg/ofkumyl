@@ -70,12 +70,12 @@ exports.run = (client, message, params) => {
  exports.conf = {
    enabled: true,
    guildOnly: false,
-   aliases: [],
+   aliases: ["istatistik"],
    permLevel: 0
  };
 
  exports.help = {
-   name: 'test',
+   name: 'sunucubilgi',
    description: 'Kullanılan Yerdeki Sunucu Bilgilerini Gösterir.',
    usage: 'bilgi'
  };
