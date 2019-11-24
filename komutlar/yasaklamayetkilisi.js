@@ -21,7 +21,7 @@ Eğer Etiketlenmiyorsa Rol Ayarlarından \`O Role Herkese Bu Rolden Bahsetme Yet
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ["yasaklama-yetkilisi"],
   permLevel: 0
 };
 
