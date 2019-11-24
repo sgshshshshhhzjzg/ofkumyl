@@ -46,7 +46,7 @@ module.exports.conf = {
 };
 
 module.exports.help = {
-  name: 'test',
+  name: 'slowmode',
   description: 'Yardım Menüsünü Gösterir.',
   usage: 'yardım'
 };
