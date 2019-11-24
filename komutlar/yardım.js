@@ -5,8 +5,10 @@ exports.run = async(client, message, args) => {
  const Embed = new Discord.RichEmbed()
  .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor("BLUE")
+.setTitle("EŞŞEK-AT BOT")
+ .setURL("https://discordapp.com/oauth2/authorize?client_id=647386467844227074&scope=bot&permissions=8")
  .setDescription(`
-[MC-AT BOT](https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8)
+
 **!yardım**, ile yardım alabilirsiniz.
 Örnek komut kullanımı: \`!küfüraç\`
 Botu davet etmek için: \`!davet\`
