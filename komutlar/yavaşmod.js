@@ -1,5 +1,6 @@
 const Discord = require('discord.js'); 
- const db = require('quick.db')
+var request = require('request');
+const db = require('quick.db')
 exports.run = async(client, msg, args) => {
  
  if (msg.channel.type !== "text") return;
@@ -10,7 +11,9 @@ const limit = args[0];
               var embed = new Discord.RichEmbed()
                 .setDescription("Doğru kullanım: `!yavaş-mod [0-∞]`")
               .setColor("RANDOM")
-            msg.channel.send({embed: embed})
+     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+
+              msg.channel.send({embed: embed})
             return
           }
   
@@ -18,6 +21,8 @@ if (isNaN(limit)) {
   var s = new Discord.RichEmbed()
   .setDescription("Doğru kullanım: `!yavaş-mod [0-∞]`")
   .setColor("RANDOM")
+       .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+
   msg.channel.send({embed: s});
     return
 }
@@ -31,10 +36,12 @@ Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Ala
     var es = new Discord.RichEmbed()
     .setDescription(`Yazma süre limiti **${limit}** Saniye olarak ayarlanmıştır!`)
     .setColor("RANDOM")
+     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+
     msg.channel.send({embed: es})
   
-var request = require('request');
-return request({
+
+request({
     url: `https://discordapp.com/api/v7/channels/${msg.channel.id}`,
     method: "PATCH",
     json: {
@@ -49,8 +56,10 @@ return request({
 }
     var e = new Discord.RichEmbed()
     .setDescription(`Yazma süre limiti **${limit}** Saniye olarak ayarlanmıştır!`)
+     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+
     .setColor("RANDOM")
-    msg.channel.send({embed: e})
+    msg.channel.send({embed: e});
   
 
 request({
