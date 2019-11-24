@@ -7,10 +7,12 @@ exports.run = async(client, message, args) => {
   if (db.has(`premium_${message.guild.id}`) == false) {
     message.channel.send(`<@${message.author.id}> Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Alabilirsiniz \`!premium\``)
   } else {
-  if (!db.fetch(`klimit31_${message.guild.id}`)) return message.channel.send(`${client.emojis.get('647760202875142154')} Olmayan Birşeyi Silemem :)
-Kısaca Zaten Kapalıymış Kanka :rose:`)
-  db.delete(`klimit31_${message.guild.id}`)
-  message.channel.send(`:ok_hand: Koruma Kanal Sistemi Sunucunuz İçin Veritabanından Silinmiştir.`);
+  if (!db.fetch(`korumaLog_${message.guild.id}`)) return message.channel.send(`<@${message.author.id}> Bu Özellik Zaten Kapalı Görünüyor :)`)
+db.delete(`klimit31_${message.guild.id}`)
+  db.delete(`banlimit31_${message.guild.id}`)
+  db.delete(`rlimit31_${message.guild.id}`)
+  db.delete(`korumaLog_${message.guild.id}`)
+  message.channel.send(`:ok_hand: Tüm Koruma Sistemi Sunucunuz İçin Veritabanından Silinmiştir.`);
   }
   };
 
