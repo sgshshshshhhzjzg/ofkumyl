@@ -8,8 +8,9 @@ const embed = new Discord.RichEmbed()
      .setTitle('MC-EŞEK BOT')
      .setURL('https://discord.gg/bWjWHK')
      .setColor('BLUE')
-     .addField('Sunucu koruma sistemlerinin bulunduğu bölüm;','!koruma-log #logkanal')
-     .addField(' ```Koruma kayıtlarının gönderileceği kanalı belirler.``` ','!koruma-banlimit <sayı>')
+     .setDescription("Sunucu koruma sistemlerinin bulunduğu bölüm;")     //ula enayi stark setDesctipyion varken niye addfield ile ortalığı karıştırdın :D
+     .addField('!koruma-log #logkanal', ' ```Koruma kayıtlarının gönderileceği kanalı belirler.```')
+     .addField('!koruma-banlimit <sayı>', '```Sunucuda birisi 10 dakika içerisinde belirlenen sayının üzerinde ban atarsa o üyeyi sunucundan atar. (kickler) Yönetici yetkisini ve botlarıda görür. (TAM KORUMA İÇİN İDEALDİR) ```')
      .addField('!koruma-kanallimit <sayı>','```30 dakika içerisinde bir üye tarafından belirtilen sayıdan fazla kanal silerse üye sunucudan atılır.```')
      .addField('!koruma-rollimit <sayı>','```30 dakika içerisinde bir üye tarafından belirtilen sayıdan fazla rol silinirse silen üye sunucudan atılır.```') 
      .addField('!koruma-banlimit-sistemi <aç/kapat>','Ban koruma özelliğini açar kapatır.')
@@ -26,12 +27,12 @@ const embed = new Discord.RichEmbed()
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['gks','güvenlikseviyesi'],
+  aliases: ['güvenlikk','koruma'],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'güvenlik-seviyesi',
-  description: 'Bratva STARK',
-  usage: 'STARKtan hediye :)'
+  name: 'güvenlik',
+  description: '',
+  usage: ''
 };

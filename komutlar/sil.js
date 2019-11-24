@@ -4,33 +4,21 @@ const db = require('quick.db')
 
 exports.run = async(client, message, args) => {
   
-  args.amount = Math.abs(args.amount);
+  const sayi = args[0]
+  if (sayi >= 101) return message.reply("En Az `1 - 100` Arasında Bir Tam Sayı Değeri Girmelisiniz.")
+
   let messages = await message.channel.fetchMessages({
-    limit: args.amount && args.amount < 100 ? args.amount : 100
+    limit: sayi
   });
 
-   if (args.bots) {
-    messages = messages.filter(message => message.author.bot);
-  }
-  if (args.nonpinned) {
-    messages = messages.filter(message => !message.pinned);
-  }
-  if (args.time) {
-    let requiredTimestamp = message.createdTimestamp - (args.time * 60 * 1000);
-    messages = messages.filter(message => message.createdTimestamp >= requiredTimestamp);
-  }
-
-
-  let clearedMessages = await message.channel.bulkDelete(messages, true);
+     let mesaj = await message.channel.bulkDelete(messages, true);
   
-  if (!clearedMessages.size) {
-    return message.channel.send("En Az `1 - 400` Arasında Bir Tam Sayı Değeri Girmelisiniz.")
+  if (!mesaj.size) {
+    return message.reply("En Az `1 - 100` Arasında Bir Tam Sayı Değeri Girmelisiniz.")
   }
 
 
-  message.channel.send({`I've cleared ${clearedMessages.size}
-
-
+    message.reply(`${mesaj.size} Adet Mesaj Başarı İle Uzaya Fırlatıldı. :rocket:`)
   
 };
 

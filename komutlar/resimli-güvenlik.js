@@ -47,6 +47,6 @@ module.exports.conf = {
 
 module.exports.help = {
   name: 'güvenlik-seviyesi',
-  description: 'Bratva STARK',
-  usage: 'STARKtan hediye :)'
+  description: '',
+  usage: ''
 };
