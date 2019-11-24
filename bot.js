@@ -294,10 +294,10 @@ client.on('guildMemberAdd',async member => {
   const resim1 = await Canvas.loadImage('https://i.hizliresim.com/gPMMrQ.png')
     const resim2 = await Canvas.loadImage('https://i.hizliresim.com/9YZZaO.png')
     const kurulus = new Date().getTime() - user.createdAt.getTime();
-    const gün = moment.duration(kurulus).format("D")   
+    const gün = moment.duration(kurulus).format("dddd")   
     var kontrol;
-      if (kurulus > 2629800000) kontrol = resim2
-    if (kurulus < 2629800000) kontrol = resim1
+      if (kurulus > 1296000000) kontrol = resim1
+    if (kurulus < 1296000000) kontrol = resim2
 
   const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
   ctx.drawImage(kontrol,0,0,canvas.width, canvas.height)
