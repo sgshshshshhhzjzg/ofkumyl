@@ -7,10 +7,10 @@ exports.run = async(client, message, args) => {
   if (db.has(`premium_${message.guild.id}`) == false) {
     message.channel.send(`<@${message.author.id}> Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Alabilirsiniz \`!premium\``)
   } else {
-  if (!db.fetch(`banlimit31_${message.guild.id}`)) return message.channel.send(`${client.emojis.get('647760202875142154')} Olmayan Birşeyi Silemem :)
+  if (!db.fetch(`klimit31_${message.guild.id}`)) return message.channel.send(`${client.emojis.get('647760202875142154')} Olmayan Birşeyi Silemem :)
 Kısaca Zaten Kapalıymış Kanka :rose:`)
-  db.delete(`banlimit31_${message.guild.id}`)
-  message.channel.send(`:ok_hand: Koruma Ban Sistemi Sunucunuz İçin Veritabanından Silinmiştir.`);
+  db.delete(`klimit31_${message.guild.id}`)
+  message.channel.send(`:ok_hand: Koruma Kanal Sistemi Sunucunuz İçin Veritabanından Silinmiştir.`);
   }
   };
 
@@ -22,7 +22,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'koruma-banlimit-sistemi-kapat',
+  name: 'koruma-kanallimit-sistemi-kapat',
   description: 'Ban limiti.',
   usage: 'banlimit',
   kategori: 'yetkili'
