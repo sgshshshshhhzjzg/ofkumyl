@@ -340,20 +340,18 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
     newMember.guild.createChannel("31|" + newMember.user.username, "voice").then(async(ü) => {
       newMember.setVoiceChannel(ü.id)
       ü.setParent(db.fetch(`geciciKategori_${newMember.guild.id}`))
-      await db.set(`geciciKanalK_${newMember.id}`, ü.id)
+      db.set(`geciciKanalK_${newMember.id}`, ü.id)
     })   
   }
       
    if (oldUserChannel) {
- 
         Old.guild.channels.forEach(channels => {
   if (channels.id == db.fetch(`geciciKanal_${newMember.guild.id}`)) return;
           if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`)) {
-                    if(channels.id == db.fetch(`geciciKanalK_${newMember.id}`)) return;
-                    if(Old.voiceChannelID == db.fetch(`geciciKanalK_${newMember.id}`)) {
+                        if(channels.id == db.fetch(`geciciKanalK_${newMember.id}`)) {
                         if(Old.voiceChannel.members.size == 0) {
-                                                       
-                              return channels.delete()     
+                              db.delete(`geciciKanalK_${oldMember.id}`)
+                              return channels.delete()
                         }
                     }
                 }

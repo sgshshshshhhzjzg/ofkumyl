@@ -12,18 +12,21 @@ exports.run = async (client, message,args) => {
   const embed = new Discord.RichEmbed()
   .setColor("BLUE")
   .setAuthor("EŞŞEK-AT", client.user.avatarURL)
-  .setTitle(message.guild.name " GEÇİCİ ODALAR")
+  .setTitle(message.guild.name + " GEÇİCİ ODALAR")
+  .setDescription(`${aktifkanallar.join('\n')}`)
+  .setFooter(`© STARK-ZEHİR`, message.guild.iconURL)
+  message.channel.send(embed)
 }
 
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['geçicioda'],
+  aliases: ['geçiciodalar'],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'geçici-oda',
+  name: 'geçici-odalar',
   description: '',
   usage: ''
 };
