@@ -346,13 +346,19 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
       
    if (oldUserChannel) {
         Old.guild.channels.forEach(channels => {
-  if (channels.id == db.fetch(`geciciKanal_${newMember.guild.id}`)) return;
-          if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`)) {
-                        if(channels.id == db.fetch(`geciciKanalK_${newMember.id}`)) {
-                        if(Old.voiceChannel.members.size == 0) {
+  if (channels.id == db.fetch(`geciciKanal_${oldMember.guild.id}`)) return;
+          if(channels.parentID == db.fetch(`geciciKategori_${oldMember.guild.id}`)) {
+                        if(channels.id == db.fetch(`geciciKanalK_${oldMember.id}`)) {
+                          setTimeout(() => {
+                          if (!oldMember.voiceChannel.id == db.fetch(`geciciKanalK_${oldMember.id}`)) return;
+                          if(oldMember.voiceChannel.members.size == 0) {
+                            
                               db.delete(`geciciKanalK_${oldMember.id}`)
                               return channels.delete()
-                        }
+                        }   
+                          
+                          }, 3000)
+                          
                     }
                 }
             });
