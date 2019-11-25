@@ -337,6 +337,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   if (newUserChannel.id == "648527140676960266") {
     newMember.guild.createChannel("31|" + newMember.user.username, "voice").then(ü => {
       newMember.setVoiceChannel(ü.id)
+      db.set(`geciciKanalK_${newMember.id}`, ü.id)
     })
     return client.channels.get("647388568419041283").send("geçici kanal test")
     
@@ -345,8 +346,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
    if(oldUserChannel === undefined && newUserChannel !== undefined) {
 
   } else if(newUserChannel === undefined){
-
-    
+    if (oldUserChannel.id == "")
+    client.channels.get(db.fetch(`geciciKanalK_${newMember.id}`)).delete()
   } 
 });
 
