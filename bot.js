@@ -328,7 +328,8 @@ if (!msg.member.hasPermission("MANAGE_MESSAGES")) return;
 
 
 client.on('voiceStateUpdate', async(oldMember, newMember) => {
-  
+  if (!db.fetch(`geciciKanal_${newMember.guild.id}`))
+  if (!db.fetch(`geciciKategori_${newMember.guild.id}`)) return;
   let Old = oldMember;
   let newUserChannel = newMember.voiceChannel
   let oldUserChannel = oldMember.voiceChannel
@@ -348,13 +349,10 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
    }  else if (oldUserChannel) {
  if(Old.voiceChannel)
     {
-        Old.guild.channels.forEach(channels=>
-            {
-                if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`))
-                {
+        Old.guild.channels.forEach(channels => {
+                if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`)) {
                     if(channels.id == db.fetch(`geciciKanalK_${newMember.id}`)) return;
-                    if(Old.voiceChannelID == channels.id)
-                    {
+                    if(Old.voiceChannelID == channels.id)                    {
                         if(Old.voiceChannel.members.size == 0)
                         {
                           if (channels.id == db.fetch(`geciciKanal_${newMember.guild.id}`)) return;
