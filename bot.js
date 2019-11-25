@@ -335,13 +335,12 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
  if(newMember.user.bot) return;
     if(oldMember.user.bot) return;
   
-  if (newUserChannel.id == db.fetch(`geciciKanal_${newMember.id}`)) {
+  if (newMember.voiceChannelID == db.fetch(`geciciKanal_${newMember.guild.id}`)) {
     newMember.guild.createChannel("31|" + newMember.user.username, "voice").then(async(ü) => {
       newMember.setVoiceChannel(ü.id)
+      ü.setParent(db.fetch(`geciciKategori_${newMember.guild.id}`))
       await db.set(`geciciKanalK_${newMember.id}`, ü.id)
-    })
-    return client.channels.get("647388568419041283").send("geçici kanal test")
-    
+    })   
   }
       
    if(oldUserChannel === undefined && newUserChannel !== undefined) {
@@ -351,14 +350,15 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
     {
         Old.guild.channels.forEach(channels=>
             {
-                if(channels.parentID == db.fetch(`geciciKategori_${newMember.id}`))
+                if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`))
                 {
                     if(channels.id == db.fetch(`geciciKanalK_${newMember.id}`)) return;
                     if(Old.voiceChannelID == channels.id)
                     {
                         if(Old.voiceChannel.members.size == 0)
                         {
-                            channels.delete();
+                          if (channels.id == db.fetch(`geciciKanal_${newMember.guild.id}`)) return;
+                              channels.delete()     
                         }
                     }
                 }
