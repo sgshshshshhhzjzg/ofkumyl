@@ -318,10 +318,36 @@ const cooldown = new Set();
 
 client.on("message", msg => {
   if (client.user.id == msg.author.id) return;
-//if (!msg.member.hasPermission("MANAGE_MESSAGES")) return; 
+if (!msg.member.hasPermission("MANAGE_MESSAGES")) return; 
   AntiSpam(client, msg);
   if (cooldown.has(msg.author.id)) {
     return;
   }
 })  
+
+
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+  
+  
+  let newUserChannel = newMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel
+
+  
+  if (newUserChannel.id == "648527140676960266") {
+    newMember.guild.createChannel("31|" + newMember.user.username, "voice").then(ü => {
+      newMember.setVoiceChannel(ü.id)
+    })
+    return client.channels.get("647388568419041283").send("geçici kanal test")
+    
+  }
+      
+   if(oldUserChannel === undefined && newUserChannel !== undefined) {
+
+  } else if(newUserChannel === undefined){
+
+    
+  } 
+});
+
 client.login(ayarlar.token);
