@@ -39,12 +39,12 @@ Etiketliyorsan Bu Hatayı Alıyorsan O Üyenin Görebildiği Bir Kanalda Banlama
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["yasakla"],
+  aliases: ["at"],
   permLevel: 0
 };
 
 exports.help = {
-  name: 'ban',
+  name: 'kick',
   description: 'Ban limiti.',
   usage: 'banlimit',
   kategori: 'yetkili'
