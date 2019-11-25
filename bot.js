@@ -338,20 +338,12 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
   
   if (newMember.voiceChannelID == db.fetch(`geciciKanal_${newMember.guild.id}`)) {
     newMember.guild.createChannel("💳|" + newMember.user.username, "voice").then(async(ü) => {
-      request({
-    url: `https://discordapp.com/api/v7/channels/${ü.id}`,
-    method: "PATCH",
-    json: {
-        user_limit: "3"
-    },
-    headers: {
-        "Authorization": `Bot ${client.token}`
-    },
-})
+    
       ü.setParent(db.fetch(`geciciKategori_${newMember.guild.id}`))
         newMember.setVoiceChannel(ü.id)      
       db.set(`geciciKanalK_${newMember.id}`, ü.id)
     })   
+    
   }
       
    if (oldUserChannel) {
