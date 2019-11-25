@@ -344,25 +344,21 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
     })   
   }
       
-   if(oldUserChannel === undefined && newUserChannel !== undefined) {
-
-   }  else if (oldUserChannel) {
- if(Old.voiceChannel)
-    {
+   if (oldUserChannel) {
+ 
         Old.guild.channels.forEach(channels => {
-                if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`)) {
+  if (channels.id == db.fetch(`geciciKanal_${newMember.guild.id}`)) return;
+          if(channels.parentID == db.fetch(`geciciKategori_${newMember.guild.id}`)) {
                     if(channels.id == db.fetch(`geciciKanalK_${newMember.id}`)) return;
-                    if(Old.voiceChannelID == channels.id)                    {
-                        if(Old.voiceChannel.members.size == 0)
-                        {
-                          if (channels.id == db.fetch(`geciciKanal_${newMember.guild.id}`)) return;
-                              channels.delete()     
+                    if(Old.voiceChannelID == db.fetch(`geciciKanalK_${newMember.id}`)) {
+                        if(Old.voiceChannel.members.size == 0) {
+                                                       
+                              return channels.delete()     
                         }
                     }
                 }
             });
-    }               }
-  
+                   }
 });
 
 client.login(ayarlar.token);
