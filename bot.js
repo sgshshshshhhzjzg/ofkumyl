@@ -150,6 +150,22 @@ client.on("guildMemberAdd", async member => {
      }
 });
 
+client.on("guildMemberAdd", async member => {
+  let kanal = await db.fetch(`kayitKanal_${member.guild.id}`);
+    let mesaj = db.fetch(`kayitGM_${member.guild.id}`);
+  if (!kanal) return;
+
+  if (!mesaj) {
+    client.channels.get(kanal).send(":loudspeaker: :inbox_tray: Selam! `" + member.user.username + "`!kayıtol yazarak kayıt olabilirsin!");
+    
+  }
+
+  if (mesaj) {
+    var mesajs = mesaj.replace("-uye-", `${member.user.username}`).replace("-uyetag-", `${member.user.tag}`);
+    return client.channels.get(kanal).send(mesajs);
+     }
+});
+
 
 client.on("guildMemberAdd", async member => {
   let mesaj = db.fetch(`ototag_${member.guild.id}`);

@@ -19,7 +19,7 @@ if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(
 exports.conf = {
   enabled: true,  
   guildOnly: false, 
-  aliases: ["otorol-kapat", "otorolkapat"], 
+  aliases: [], 
   permLevel: 0
 };
 
