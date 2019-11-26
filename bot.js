@@ -160,7 +160,7 @@ client.on("guildMemberAdd", async member => {
 
   if (mesaj) {
     var mesajs = mesaj.replace("-uye-", `${member.user.username}`);
-    if (!db.fetch(`isimtemizleyici_ ${member.guild.id}`)) {
+    if (!db.fetch(`isimtemizleyici_${member.guild.id}`)) {
       return member.setNickName(mesajs)
     }
     
