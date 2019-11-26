@@ -398,6 +398,7 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
             });
                    }
 });
+
 client.on("message", message => {
 
   if (!message.guild) return;
