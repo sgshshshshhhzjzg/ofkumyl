@@ -16,7 +16,7 @@ Susturulmuş Üyelere Verilecek Otomatik Rol.
 `)
 .addField(`• \`!sustur | !mute | !sürelisustur | !tempmute\`》`, `
 Komutları İle Susturabilirsiniz Örnek Kullanım.
-\`!sustur @üye 10m\`
+\`!sustur @üye sebep 10m\`
 10s = 10 Saniye
 10m = 10 Dakika
 10h = 10 Saat
@@ -29,7 +29,7 @@ Komutları İle Susturmayı Çözebilirsiniz Örnek Kullanım.
 .setDescription(`
 Susturma Sistemi
 **Üyeleri Süreli Susturma Sistemidir.**
-Örnek \`!sustur @üye 10m\` Yaparsanız Üyeyi 10 Dakika Susturur.
+Örnek \`!sustur @üye sebep 10m\` Yaparsanız Üyeyi 10 Dakika Susturur.
 `)
 .setFooter('© STARK-ZEHİR',client.user.avatarURL)
 
