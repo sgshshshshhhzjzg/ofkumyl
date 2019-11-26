@@ -309,7 +309,7 @@ client.on('guildMemberAdd',async member => {
   const resim1 = await Canvas.loadImage('https://i.hizliresim.com/gPMMrQ.png')
     const resim2 = await Canvas.loadImage('https://i.hizliresim.com/9YZZaO.png')
     const kurulus = new Date().getTime() - user.createdAt.getTime();
-    const gün = moment.duration(kurulus).format("dddd")   
+    
     var kontrol;
       if (kurulus > 1296000000) kontrol = resim1
     if (kurulus < 1296000000) kontrol = resim2
@@ -328,6 +328,7 @@ client.on('guildMemberAdd',async member => {
        const attachment = new Discord.Attachment(canvas.toBuffer(), 'STARKs-güvenlik.png');
     chan.send(attachment)
 });
+
 const AntiSpam = require("./spamkorumasi.js");
 const cooldown = new Set();
 

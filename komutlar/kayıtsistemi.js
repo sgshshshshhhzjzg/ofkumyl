@@ -5,20 +5,29 @@ exports.run = (client, message, args) => {
 const embed = new Discord.RichEmbed()  
 .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor('BLUE')
-.addField("__OTOROL Ayarlamak__", '__**-oto-rol-ayarla**__ 》 **Otorolü Ayarlar.**\n Örnek: `-oto-rol-ayarla @rolünüz #logkanalı` \n \n __**-otorol-msg **__》 **Otorol Mesajını Ayarlar. __Premium İçindir__**\n Örnek: `!otorol-msg -server-, Sunucumuza Hoşgeldin, -uye-! -rol- Adlı Rolün Başarı İle Verildi Seninle Beraber, **-uyesayisi-** Kişiyiz`')
-
-  .addField('__**Kullanabileceğiniz Değişkenler**__',`
--uye- 》 Üyeyi Etiketler.
--rol- 》 Rolün İsmini Ekler.
--server- 》 Server İsmini Yazar.
--uyesayisi- 》 Üye Sayısını Atar.
--botsayisi- 》 Bot Sayısını Atar.
--kanalsayisi- 》 Kanal Sayısını Atar.
--bolge- 》 Sunucu Bölgesinin İsmini Atar.
--kalanuye- 》 Hedefe Kaç Kişi Kalmış Gösterir.
--hedefuye- 》 Hedef Rakamı Gösterir.
+.setTitle(`MC-EŞŞEK BOT`)
+.setURL("https://discord.gg/jRzZB7")
+.addField(`• \`!kayit-kanal-ayarla #kanal\`》`, "Üyelerin Kayıt Olacağı Kanal")
+.addField(`• \`!kanal-ayarla #kanal\`》`, "Üyeler Kayıt Olunca Bildirim Yollanan Kanal")
+.addField(`• \`!isim-sistemi -uye- -yas-\`》`, `
+Üye İsim Sistemi Özgürce Yerleştirin Değişkenler -uye- -yas-
+Sadece Yaş Seçeneği Eklemezseniz Yaşı Sormayacaktır.
 `)
-     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+.addField(`• \`!kayit-verilecek-rol-ayarla @rol\`》`, "Kayıt Olan Kullanıcıya Otomatik Verilecek Rol")
+.addField(`• \`!kayıt-alınacak-rol-ayarla @rol\`》`, "Kayıt Olan Kullanıcıdan Otomatik Alınacak (Silinecek) Rol")
+.addField(`• \`!kayit-sistemi-kapat\`》`, "Kayıt Sistemini Kapatır Ve Tüm Ayarları Sıfırlar.")
+.setDescription(`
+KAYIT Sistemi Kullanımı
+• \`!giriş-sistemi Hoşgeldin -uye- Kayıt Olmak İçin !kayıt mahmut 18\`》
+Giriş Mesajını Özgürce Editleyebilirsiniz Değişkenler -uye- -uyetag-
+
+• \`!isim-temizleyici-ac\`》 PREMIUM SUNUCULAR İÇİN
+Üyeler İsimlerinde A-Z Harici Kelime Kullanamazlar
+
+• \`!isim-temizleyici-kapat\`》 PREMIUM SUNUCULAR İÇİN
+Üyeler İsimlerinde Şekilli Karakter Kullanabilirler
+`)
+.setFooter('© STARK-ZEHİR',client.user.avatarURL)
 
  message.channel.send(embed) 
   };
