@@ -9,14 +9,15 @@ exports.run = async (client, message, args) => {
   let vr = await db.fetch(`kayitVR_${message.guild.id}`);
   let lh = await db.fetch(`kayitLog_${message.guild.id}`);
   
+  if (!isim31) return 
   if (!ch) return 
   if (!ar) return
   if (!vr) return 
   if (!lh) return
-  if (!isim31.content.includes(`-yas-`)) {
+  if (!isim31.includes(`-yas-`)) {
   let isim = args[0]
   let yas = args[1];
-  if (!isim) return message.channel.send(`Seni Kayıt Etmem İçin Bir İsim Girmelisin : \`!kayıt Mahmut 18\``)
+  if (!isim) return message.channel.send(`Seni Kayıt Etmem İçin Bir İsim Girmelisin : \`!kayıt Mahmut\``)
  
   message.reply(`Kaydınız Oluşturuldu.`)
   message.member.setNickname(isim31.replace("-uye-", `${isim}`))
