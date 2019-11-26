@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(` Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
   
   let mesaj = args.slice(0).join(' ');
-  if(mesaj.length < 5) return message.channel.send(client.emojis.get("647760202875142154") + 'Otorol Mesaj Sistemi İçin En Az 5 Karakter Belirtebilirsin. Örnek: `-oto-rol-msg -uye- Hoşgeldin! senle beraber -uyesayisi- Kişiyiz!`')
+  if(mesaj.length < 5) return message.channel.send(client.emojis.get("647760202875142154") + ' Otorol Mesaj Sistemi İçin En Az 5 Karakter Belirtebilirsin. Örnek: `-oto-rol-msg -uye- Hoşgeldin! senle beraber -uyesayisi- Kişiyiz!`')
   
  message.channel.send(client.emojis.get("647746144155467786") + ' Oto-Rol mesajını `'+mesaj+'` Olarak ayarladım.') 
  db.set(`otoRM_${message.guild.id}`, mesaj)  

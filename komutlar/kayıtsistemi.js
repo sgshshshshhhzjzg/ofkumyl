@@ -16,16 +16,11 @@ Sadece Yaş Seçeneği Eklemezseniz Yaşı Sormayacaktır.
 .addField(`• \`!kayit-verilecek-rol-ayarla @rol\`》`, "Kayıt Olan Kullanıcıya Otomatik Verilecek Rol")
 .addField(`• \`!kayıt-alınacak-rol-ayarla @rol\`》`, "Kayıt Olan Kullanıcıdan Otomatik Alınacak (Silinecek) Rol")
 .addField(`• \`!kayit-sistemi-kapat\`》`, "Kayıt Sistemini Kapatır Ve Tüm Ayarları Sıfırlar.")
+.addField(`• \`!giriş-sistemi Hoşgeldin -uye- Kayıt Olmak İçin !kayıt mahmut 18\`》`, "Giriş Mesajını Özgürce Editleyebilirsiniz Değişkenler -uye- -uyetag-")
+.addField(`• \`!isim-temizleyici-ac\`》 **PREMIUM SUNUCULAR İÇİN**`, "Üyeler İsimlerinde A-Z Harici Kelime Kullanamazlar")
+.addField(`• \`!isim-temizleyici-kapat\`》 **PREMIUM SUNUCULAR İÇİN**`, "Üyeler İsimlerinde A-Z Harici Kelime Kullanabilirler")
 .setDescription(`
 KAYIT Sistemi Kullanımı
-• \`!giriş-sistemi Hoşgeldin -uye- Kayıt Olmak İçin !kayıt mahmut 18\`》
-Giriş Mesajını Özgürce Editleyebilirsiniz Değişkenler -uye- -uyetag-
-
-• \`!isim-temizleyici-ac\`》 PREMIUM SUNUCULAR İÇİN
-Üyeler İsimlerinde A-Z Harici Kelime Kullanamazlar
-
-• \`!isim-temizleyici-kapat\`》 PREMIUM SUNUCULAR İÇİN
-Üyeler İsimlerinde Şekilli Karakter Kullanabilirler
 `)
 .setFooter('© STARK-ZEHİR',client.user.avatarURL)
 
