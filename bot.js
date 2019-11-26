@@ -398,5 +398,27 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
             });
                    }
 });
+client.on("message", message => {
+
+  if (!message.guild) return;
+  
+
+  if(!db.has(`komut_${message.guild.id}`) == true) return
+for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
+  
+ var o = Object.keys(db.fetch(`komut_${message.guild.id}`)[i])
+ 
+  if (message.content === o) {
+    
+    var a = db.fetch(`komut_${message.guild.id}`)[i][Object.keys(db.fetch(`komut_${message.guild.id}`)[i])]
+    
+    message.channel.send(a)
+  
+ }
+}
+    
+});
+
+
 
 client.login(ayarlar.token);
