@@ -153,6 +153,24 @@ client.on("guildMemberAdd", async member => {
 
 
 client.on("guildMemberAdd", async member => {
+  let mesaj = db.fetch(`ototag_${member.guild.id}`);
+    if (!mesaj) {
+    return;
+  }
+
+  if (mesaj) {
+    var mesajs = mesaj.replace("-uye-", `${member.user.username}`);
+    if (!db.fetch(`isimtemizleyici_ ${member.guild.id}`)) {
+      return member.setNickName(mesajs)
+    }
+    
+    var mesajs31 = mesaj.replace("-uye-", `${member.user.username.replace(/[^a-zA-Z ]/g, "")}`);
+    return member.setNickName(mesajs31)
+     }
+});
+
+
+client.on("guildMemberAdd", async member => {
   const kanal = await db.fetch(`sayacK_${member.guild.id}`);
   if (!kanal) return;
   const sayaç = await db.fetch(`sayacS_${member.guild.id}`);
