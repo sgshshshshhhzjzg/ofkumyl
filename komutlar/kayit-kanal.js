@@ -21,7 +21,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'kayit-kanal-ayarla ',
+  name: 'kayit-kanal',
   description: 'taslak', 
   usage: 'Otorol-ayarla'
 };

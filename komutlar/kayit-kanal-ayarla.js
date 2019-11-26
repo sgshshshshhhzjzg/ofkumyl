@@ -9,9 +9,7 @@ if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(
 ${client.emojis.get("647760202875142154")} Bu Özelliği Ayarlamam İçin Bir Kanal Etiketlemelisin Örnek: !kayit-kanal-ayarla \`#kayitkanal\``)
  
   message.channel.send(`${client.emojis.get("647746144155467786")} Kayıt Kanalını **${kanal}** Olarak Ayarladım! `)
-
- 
-    db.set(`kayitKanal_${message.guild.id}`, kanal.id) 
+  db.set(`kayitKanal_${message.guild.id}`, kanal.id) 
 };
 exports.conf = {
   enabled: true,  
@@ -21,7 +19,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'kayit-kanal-ayarla ',
+  name: 'kayit-kanal-ayarla',
   description: 'taslak', 
   usage: 'Otorol-ayarla'
 };
