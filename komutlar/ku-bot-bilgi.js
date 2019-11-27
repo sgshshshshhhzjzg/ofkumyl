@@ -15,10 +15,16 @@ const embed = new Discord.RichEmbed()
 .setTimestamp()
 .setFooter("© Mcadventuretime.com", client.user.avatarURL)
 .addField("Kullanılan RAM miktarı", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`)
-.addField("Toplam RAM miktarı", `${(process.memory() / 1024 / 1024).toFixed(2)} MB`)
+.addField("Toplam RAM miktarı", `${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB`)
 .addField("Toplam sunucu sayısı", `${client.guilds.size.toLocaleString()}`)
 .addField("Bilgi", `
-Bilgi
+${client.guilds.size.toLocaleString()}, Sunucu!. / ${client.users.size}, Üye! / Shard ID: **Yok!**
+
+15 saat 37 dakika içinde,
+**32,626** kullanılan kelime içerisinden :speech_balloon: 
+**220** küfür engellendi :angry: 
+**6** reklam engellendi :hammer:
+[Bot Durumu](https://goo.gl/vJvz9g)
 `)
 message.channel.send(embed)
 };
