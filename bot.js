@@ -595,5 +595,41 @@ if (!oldMsg.guild) return;
   if (!i) return;
 });
 
+client.on("message", msg => { 
+   const linkK = db.has(`linkKR_${msg.guild.id}`)
+  if (!msg.guild) return;
+  if (!linkK) return;
+    if (linkK === true) {
+    var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+    if (regex.test(msg.content) == true) {
+    if (!msg.member.hasPermission("BAN_MEMBERS")) {
+      msg.delete()
+      if (db.fetch(`linkP_${msg.author.id}`) == 3) {
+      db.delete(`linkP_${msg.author.id}`)
+        var e = new Discord.RichEmbed()
+        .setColor(client.ayarlar.renk)
+        .setDescription(msg.author.username + ` çok fazla reklam yaptığı için atıldı.`)
+        msg.channel.send(e)
+        return msg.guild.members.get(msg.author.id).kick()
+      }
+      if (db.fetch(`linkP_${msg.author.id}`) >= 3) {
+      db.delete(`linkP_${msg.author.id}`)
+        var e = new Discord.RichEmbed()
+        .setColor(client.ayarlar.renk)
+        .setDescription(msg.author.username + ` çok fazla reklam yaptığı için atıldı.`)
+        msg.channel.send(e)
+        return msg.guild.members.get(msg.author.id).kick()
+      }
+      db.add(`linkP_${msg.author.id}`, 1)
+          
+         var e = new Discord.RichEmbed()
+        .setColor(client.ayarlar.renk)
+        .setDescription(`Bu sunucuda link koruması aktif ${db.fetch(`linkP_${msg.author.id}`)}/3`)
+        msg.channel.send(e)
+
+    }
+}
+    }
+});
 
 client.login(ayarlar.token);
