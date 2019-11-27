@@ -528,6 +528,7 @@ const embed1 = new Discord.RichEmbed()
     });
 
 client.on("message", async msg => {
+  
   if(msg.author.bot) return;
   if(msg.channel.type === "dm") return;
   let i = await db.fetch(`küfürE_${msg.channel.id}`)

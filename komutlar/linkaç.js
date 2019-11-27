@@ -11,12 +11,12 @@ exports.run = (client, message, args) => {
 exports.conf = {
   enabled: true,  
   guildOnly: false, 
-  aliases: [], 
+  aliases: ["link-engel-aç"], 
   permLevel: 0
 };
 
 exports.help = {
-  name: 'linkaç',
+  name: 'linkengelaç',
   description: 'sayaç', 
   usage: 'sayaç'
 };
