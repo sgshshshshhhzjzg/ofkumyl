@@ -438,11 +438,22 @@ client.on("message", async msg => {
         }
 })
 
-client.on("message",message => {
+client.on("message", async message => {
   
-  const kanal = db.fetch(`usohbet_${message.channel.id+message.guild.id}`)
+  const kanal = db.fetch(`utsK_${message.channel.id+message.guild.id}`)
   if (message.channel.id == kanal) {
-    message.delete(100000)
+let uwu = false;
+            while (!uwu) {
+                const response = await message.channel.awaitMessages(neblm => neblm.author.bot === true, { max: 1, time: 30000 });
+                if (response) uwu = true
+                }
+                if (uwu) {
+                try {
+                 message.delete(100)
+            } catch(e) {
+            message.channel.send(':warning: Bir hata var!')
+        }
+    } else return console.log('Hata var')
   }
 })
 
