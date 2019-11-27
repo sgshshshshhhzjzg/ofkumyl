@@ -607,26 +607,19 @@ client.on("message", msg => {
       msg.delete()
       if (db.fetch(`linkP_${msg.author.id}`) == 3) {
       db.delete(`linkP_${msg.author.id}`)
-        var e = new Discord.RichEmbed()
-        .setColor(client.ayarlar.renk)
-        .setDescription(msg.author.username + ` çok fazla reklam yaptığı için atıldı.`)
-        msg.channel.send(e)
+        
+        msg.channel.send(msg.author.username + ` çok fazla reklam yaptığı için atıldı.`)
         return msg.guild.members.get(msg.author.id).kick()
       }
       if (db.fetch(`linkP_${msg.author.id}`) >= 3) {
       db.delete(`linkP_${msg.author.id}`)
-        var e = new Discord.RichEmbed()
-        .setColor(client.ayarlar.renk)
-        .setDescription(msg.author.username + ` çok fazla reklam yaptığı için atıldı.`)
-        msg.channel.send(e)
+
+        msg.channel.send(msg.author.username + ` çok fazla reklam yaptığı için atıldı.`)
         return msg.guild.members.get(msg.author.id).kick()
       }
       db.add(`linkP_${msg.author.id}`, 1)
-          
-         var e = new Discord.RichEmbed()
-        .setColor(client.ayarlar.renk)
-        .setDescription(`Bu sunucuda link koruması aktif ${db.fetch(`linkP_${msg.author.id}`)}/3`)
-        msg.channel.send(e)
+
+        msg.reply(`Bu sunucuda **reklam kick sistemi** aktif **${db.fetch(`linkP_${msg.author.id}`)}/3**`)
 
     }
 }
