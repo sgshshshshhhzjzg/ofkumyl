@@ -22,6 +22,7 @@ Sadece Yaş Seçeneği Eklemezseniz Yaşı Sormayacaktır.
 .setDescription(`
 KAYIT Sistemi Kullanımı
 `)
+.setTimestamp()
 .setFooter('© STARK-ZEHİR',client.user.avatarURL)
 
  message.channel.send(embed) 

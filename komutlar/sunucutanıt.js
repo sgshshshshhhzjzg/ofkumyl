@@ -17,6 +17,7 @@ exports.run = async (client, message, args) => {
   .setURL("https://discord.gg/UcMAvy")
   .setDescription("!sunucutanıt Kullandınız.")
   .addField('Sizin Sunucunuz Burada Tanıtıldı', `[Tıkla](https://discord.gg/UcMAvy)`)
+        .setTimestamp()
   .addField("Sizde sunucunuzu tanıtmak istiyorsanız.", "!davet yazarak beni sunucunuza ekleyebilirsiniz.")
   .setColor('BLUE')
  message.channel.sendEmbed(embed);
@@ -30,6 +31,7 @@ exports.run = async (client, message, args) => {
       .addField(` Sunucudakı Üye Sayısı`, message.guild.members.size, true)
       .addField(` Sunucu Davet Linki`, invite.url, true)
             .setColor('BLUE')
+        .setTimestamp()
       .setThumbnail(message.guild.iconURL)
        client.channels.get('648071564964921344').send(embed)
             });

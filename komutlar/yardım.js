@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 exports.run = async(client, message, args) => {
  
  const Embed = new Discord.RichEmbed()
+ .setTimestamp()
  .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor("BLUE")
 .setTitle("EŞŞEK-AT BOT")

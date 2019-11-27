@@ -5,6 +5,7 @@ exports.run = (client, message, args) => {
 const embed = new Discord.RichEmbed()  
 .setAuthor("EŞŞEK-AT", client.user.avatarURL)
 .setColor('BLUE')
+.setTimestamp()
 .setDescription("Merhaba Öncelikle Sunucunuzdaki Herkesi Banlama Riski Olan Üyelerin Önüne Geçmek İçin Bunu Kullanın")
 .addField("• !banlimit 3 》", "Ban Atan Kişi 10 Dakika İçinde Ayarlanılan Rakamı Geçerse Üyenin Ban Atabilme Yetkisi Alınır.")
 .addField("• !yasaklama-yetkilisi @Rol 》", "Bu Rolü Ayarlayın Ve Ban Atmasını İstediğiniz Kişilere Verin Bu Role Kim Sahipse Bot İle Ban Atabilir (BU ROLE BAN YETKİSİ VERMİCEKSİNİZ BAN ATMASINI İSTEDİĞİNİZ KİŞİYE VERİLECEK)")

@@ -14,6 +14,7 @@ exports.run = async (client, message,args) => {
   .setAuthor("EŞŞEK-AT", client.user.avatarURL)
   .setTitle(message.guild.name + " GEÇİCİ ODALAR")
   .setDescription(`${aktifkanallar.join('\n')}`)
+  .setTimestamp()
   .setFooter(`© STARK-ZEHİR`, message.guild.iconURL)
   message.channel.send(embed)
 }

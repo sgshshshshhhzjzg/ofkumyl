@@ -20,7 +20,8 @@ exports.run = async (client, message, args) => {
   
 
     var embed = new Discord.RichEmbed()
-    .setColor("RANDOM")
+    .setTimestamp()
+    .setColor("BLUE")
    .setTitle(`${args[0]} ${x}`) 
    .setDescription(y.replace("{cevap}", args.slice(1).join(' '))) 
     message.channel.send(embed)

@@ -12,7 +12,7 @@ const limit = args[0];
                 .setDescription("Doğru kullanım: `!yavaş-mod [0-∞]`")
               .setColor("RANDOM")
      .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-
+.setTimestamp()
               msg.channel.send({embed: embed})
             return
           }
@@ -22,7 +22,7 @@ if (isNaN(limit)) {
   .setDescription("Doğru kullanım: `!yavaş-mod [0-∞]`")
   .setColor("RANDOM")
        .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-
+.setTimestamp()
   msg.channel.send({embed: s});
     return
 }
@@ -37,7 +37,7 @@ Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Ala
     .setDescription(`Yazma süre limiti **${limit}** Saniye olarak ayarlanmıştır!`)
     .setColor("RANDOM")
      .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-
+.setTimestamp()
     msg.channel.send({embed: es})
   
 
@@ -57,7 +57,7 @@ request({
     var e = new Discord.RichEmbed()
     .setDescription(`Yazma süre limiti **${limit}** Saniye olarak ayarlanmıştır!`)
      .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-
+.setTimestamp()
     .setColor("RANDOM")
     msg.channel.send({embed: e});
   

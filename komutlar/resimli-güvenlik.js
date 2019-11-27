@@ -17,6 +17,7 @@ Bu Üyeler Genelde Zararlı Üyelerdir.
 Açtıktan Sonra Otomatik Aktif Olur. Başka Birşey Yazmanıza Gerek Yok
 `)
 .setColor("BLUE")
+.setTimestamp()
 .setFooter("© Mcadventuretime.com")
 message.channel.send(mbed)
     }

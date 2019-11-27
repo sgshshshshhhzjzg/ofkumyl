@@ -18,7 +18,7 @@ const embed = new Discord.RichEmbed()
 -hedefuye- 》 Hedef Rakamı Gösterir.
 `)
      .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-
+.setTimestamp()
  message.channel.send(embed) 
   };
 exports.conf = {

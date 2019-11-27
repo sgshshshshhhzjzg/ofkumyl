@@ -32,7 +32,7 @@ Susturma Sistemi
 Örnek \`!sustur @üye sebep 10m\` Yaparsanız Üyeyi 10 Dakika Susturur.
 `)
 .setFooter('© STARK-ZEHİR',client.user.avatarURL)
-
+.setTimestamp()
  message.channel.send(embed) 
   };
 exports.conf = {
