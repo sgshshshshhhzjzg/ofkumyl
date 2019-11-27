@@ -462,13 +462,39 @@ let uwu = false;
   }
 })
 
-
 client.on("message", msg => {
-    const swearWords = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
-  if (swearWords.some(word => msg.content.includes(word))) {
+  const reklama = db.fetch(`linkK_${msg.channel.id}`)
+  if (!reklama) return
+  var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+    if (regex.test(msg.content) == true) {
     if (!msg.member.hasPermission("BAN_MEMBERS")) {
       return;
     }
+    
+   msg.delete()
+    const Embed = new Discord.RichEmbed()
+    .setColor("BLUE")
+    .setAuthor("MC-EŞŞEK", client.user.avatarURL)
+    .setDescription(`${msg.author} Reklam Yasak Bunu Bilmiyormusun! ${client.emojis.get("649299260906405919")}`)
+    msg.channel.send(Embed).then(sil => sil.delete(3000))
+  }
+})
+
+client.on("message", msg => {
+  const reklama = db.fetch(`reklamK_${msg.channel.id}`)
+  if (!reklama) return
+  const kelime = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
+  if (kelime.some(reklam => msg.content.includes(reklam))) {
+    if (!msg.member.hasPermission("BAN_MEMBERS")) {
+      return;
+    }
+    
+   msg.delete()
+    const Embed = new Discord.RichEmbed()
+    .setColor("BLUE")
+    .setAuthor("MC-EŞŞEK", client.user.avatarURL)
+    .setDescription(`${msg.author} Reklam Yasak Bunu Bilmiyormusun! ${client.emojis.get("649299260906405919")}`)
+    msg.channel.send(Embed).then(sil => sil.delete(3000))
   }
 })
 client.login(ayarlar.token);
