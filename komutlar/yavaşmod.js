@@ -1,66 +1,88 @@
-const Discord = require('discord.js');
-const fs = require('fs');
-const db = require('quick.db');
-
-
-exports.run = async (client, message, args) => {
-
+const Discord = require('discord.js'); 
+var request = require('request');
+const db = require('quick.db')
+exports.run = async(client, msg, args) => {
+ 
+ if (msg.channel.type !== "text") return;
   
-    if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.channel.send(`Bunun için \`EMOJILERI YONET\` yetkisine sahip olman gerek.`).then(m => m.delete(5000).catch());
-    message.delete().catch()
-const embed = new Discord.RichEmbed()
-      .setColor("BLUE")
-      .setDescription(client.emojis.get("647733808447225866") + "| Doğru Kullanım: `!yükle emoji-linki emoji-adı`")
-  if (!args[0]) return message.channel.send(embed)
-    if (!args[1]) return message.channel.send(embed)
- if(message.guild.emojis.filter(e => e.animated).size == 50){
-   const embed = new Discord.RichEmbed()
-      .setColor("BLUE")
-      .setDescription(client.emojis.get("647733808447225866") + "| Hareketli emoji eklemek için yeriniz kalmamış!")
-         return message.channel.send(embed);
-         }else
-         if(message.guild.emojis.filter(e => !e.animated).size == 50){
-           const embed = new Discord.RichEmbed()
-      .setColor("BLUE")
-      .setDescription(client.emojis.get("647733808447225866") + "| Emoji eklemek için yeriniz kalmamış!")
-         return message.channel.send(embed);
-         
-         }
-         if(message.guild.emojis.filter(e => e.name.toLowerCase() === args[1].toLowerCase()).size > 0){
-           const embed = new Discord.RichEmbed()
-      .setColor("BLUE")
-      .setDescription(client.emojis.get("647733808447225866") + `${args[1]} adına sahip başka bir emoji var!`) 
-           return message.channel.send(embed)
-        }
-         message.guild.createEmoji(args[0], args.slice(1).join(" ")).then(e => {
-            const embed = new Discord.RichEmbed()
-      .setColor("BLUE")
-      .setDescription(client.emojis.get("647733787769307136") + "| " + "**" + args[1] + "** adlı emoji yüklendi")
-         return message.channel.send(embed);
-         message.channel.send(embed).catch(error => {
-             let e = new Discord.RichEmbed()
-             .setColor("BLUE")
-             .setTitle(`Hata.`)
-             .setDescription(`
-             **Hata Sebebleri Şunlardan Kaynaklı Olabilir;**
-             1) Emoji boyutu 128 kb nin üstünde olabilir..
-             2) Geçersiz link girmiş olabilirsiniz.
-             `)
-             return message.channel.send(e)
-         });
-    })  
+const limit = args[0];
+  
+  if(!limit) {
+              var embed = new Discord.RichEmbed()
+                .setDescription("Doğru kullanım: `!yavaş-mod [0-∞]`")
+              .setColor("RANDOM")
+     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+.setTimestamp()
+              msg.channel.send({embed: embed})
+            return
+          }
+  
+if (isNaN(limit)) {
+  var s = new Discord.RichEmbed()
+  .setDescription("Doğru kullanım: `!yavaş-mod [0-∞]`")
+  .setColor("RANDOM")
+       .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+.setTimestamp()
+  msg.channel.send({embed: s});
+    return
+}
+  
+if (limit > 300) {
+  var x = new Discord.RichEmbed()
+  if (db.has(`premium_${msg.guild.id}`) == false) {
+  return msg.reply(`5 Dakika Üstü İçin Sunucunuzun Premium Olması Gerekiyor (6 Saate Kadar Uzatabilirsiniz.).
+Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Alabilirsiniz \`!premium\``);
+    } else {
+    var es = new Discord.RichEmbed()
+    .setDescription(`Yazma süre limiti **${limit}** Saniye olarak ayarlanmıştır!`)
+    .setColor("RANDOM")
+     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+.setTimestamp()
+    msg.channel.send({embed: es})
+  
+
+request({
+    url: `https://discordapp.com/api/v7/channels/${msg.channel.id}`,
+    method: "PATCH",
+    json: {
+        rate_limit_per_user: limit
+    },
+    headers: {
+        "Authorization": `Bot ${client.token}`
+    },
+})
+    }
+    return
+}
+    var e = new Discord.RichEmbed()
+    .setDescription(`Yazma süre limiti **${limit}** Saniye olarak ayarlanmıştır!`)
+     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+.setTimestamp()
+    .setColor("RANDOM")
+    msg.channel.send({embed: e});
+  
+
+request({
+    url: `https://discordapp.com/api/v7/channels/${msg.channel.id}`,
+    method: "PATCH",
+    json: {
+        rate_limit_per_user: limit
+    },
+    headers: {
+        "Authorization": `Bot ${client.token}`
+    },
+})
+}
+
+module.exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: ["yavaşmod"],
+  permLevel: 0
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: ["emojiyükle", "emoji-yükle"],
-    permLevel: 0
-    
-  };
-  
-  exports.help = {
-    name: 'emogeyükle',
-    description: 'Sunucu ayarlarını gösterir.',
-    usage: 'ayarlar'
-  };
+module.exports.help = {
+  name: 'slowmode',
+  description: 'Yardım Menüsünü Gösterir.',
+  usage: 'yardım'
+};

@@ -464,20 +464,11 @@ let uwu = false;
 
 
 client.on("message", msg => {
-    if (!msg.guild) return;
-  const reklam2 = db.fetch(`reklamK_${msg.channel.id}`)
-  if (!reklam2) return;
-  const reklam = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
-  if (reklam.some(kelime => msg.content.includes(kelime))) {
+    const swearWords = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
+  if (swearWords.some(word => msg.content.includes(word))) {
     if (!msg.member.hasPermission("BAN_MEMBERS")) {
       return;
-    } 
-    
-    msg.delete()
-    const Embed = new Discord.RichEmbed()
-    .setColor("BLUE")
-    .setDescription(`$[message.author} Reklam Yasak Bunu Bilmiyormusun!`)
-    msg.channel.send()
+    }
   }
 })
 client.login(ayarlar.token);
