@@ -441,7 +441,12 @@ client.on("message", async msg => {
 client.on("message", async message => {
   
   const kanal = db.fetch(`utsK_${message.channel.id+message.guild.id}`)
+  
   if (message.channel.id == kanal) {
+             
+    if (message.author.bot == true) {
+      return message.delete(10000)
+    }
 let uwu = false;
             while (!uwu) {
                 const response = await message.channel.awaitMessages(neblm => neblm.author.bot === true, { max: 1, time: 30000 });
@@ -449,7 +454,7 @@ let uwu = false;
                 }
                 if (uwu) {
                 try {
-                 message.delete(100)
+                 message.delete(10000)
             } catch(e) {
             message.channel.send(':warning: Bir hata var!')
         }
