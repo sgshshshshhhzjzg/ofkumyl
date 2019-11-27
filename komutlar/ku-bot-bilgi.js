@@ -1,11 +1,12 @@
 const Discord = require('discord.js');
 const db = require('quick.db')
+const moment = require('moment')
 const Jimp = require('jimp')
 
 exports.run = (client, message, args) => { 
 
  var user = message.mentions.users.first() || message.author; 
-  
+  const duration = client.uptime
 const embed = new Discord.RichEmbed()
 .setAuthor("MC-EŞŞEK", client.user.avatarURL)
 .setTitle("MC-EŞŞEK BOT")
@@ -20,7 +21,7 @@ const embed = new Discord.RichEmbed()
 .addField("Bilgi", `
 ${client.guilds.size.toLocaleString()}, Sunucu!. / ${client.users.size}, Üye! / Shard ID: **Yok!**
 
-15 saat 37 dakika içinde,
+${duration / 60 / 60} dakika içinde,
 **32,626** kullanılan kelime içerisinden :speech_balloon: 
 **220** küfür engellendi :angry: 
 **6** reklam engellendi :hammer:

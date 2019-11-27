@@ -462,4 +462,13 @@ let uwu = false;
   }
 })
 
+
+client.on("message", msg => {
+    const swearWords = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
+  if (swearWords.some(word => msg.content.includes(word))) {
+    if (!msg.member.hasPermission("BAN_MEMBERS")) {
+      return;
+    }
+  }
+})
 client.login(ayarlar.token);
