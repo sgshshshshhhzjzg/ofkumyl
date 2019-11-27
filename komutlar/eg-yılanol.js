@@ -6,14 +6,14 @@ exports.run = (client, message, args) => {
 
  var user = message.mentions.users.first() || message.author; 
   
-  Jimp.read(`https://cdn.discordapp.com/attachments/647388568419041283/649244236402655255/maymunbenimm.png`, (err, image) => {
-    image.resize(500, 200)
+  Jimp.read(`https://cdn.discordapp.com/attachments/647388568419041283/649244993545961484/yilanbenimm.png`, (err, image) => {
+    image.resize(223, 400)
 
     Jimp.read(user.avatarURL, (err, avatar) => {
-        avatar.resize(112, 112)
-        image.composite(avatar, 115, 44).write(`./resimler/maymunol/maymunol-${message.author.id}.png`);
+        avatar.resize(121, 121)
+        image.composite(avatar, 55, 44).write(`./resimler/yılanol/yılanol-${message.author.id}.png`);
         setTimeout(function() {
-            message.channel.send(new Discord.Attachment(`./resimler/maymunol/maymunol-${message.author.id}.png`));
+            message.channel.send(new Discord.Attachment(`./resimler/yılanol/yılanol-${message.author.id}.png`));
         }, 1000);
       });
     });
@@ -22,12 +22,12 @@ exports.run = (client, message, args) => {
 exports.conf = {
   enabled: true,  
   guildOnly: false, 
-  aliases: ['maymunol'], 
+  aliases: ['yılanol'], 
   permLevel: 0
 };
 
 exports.help = {
-  name: 'maymun-ol',
+  name: 'yılan-ol',
   description: 'taslak', 
   usage: 'sayac-hg-msg'
 };
