@@ -421,7 +421,6 @@ for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
 });
 
 client.on("message", async msg => {
-const db = require('quick.db');   
     let i = db.has(`otobsilici_${msg.channel.id+msg.guild.id}`)
        if (i == true) {   
               let kanal = db.fetch(`otobsilici_${msg.channel.id+msg.guild.id}`)
@@ -437,6 +436,14 @@ const db = require('quick.db');
   }
           }
         }
+})
+
+client.on("message",message => {
+  
+  const kanal = db.fetch(`usohbet_${message.channel.id+message.guild.id}`)
+  if (message.channel.id == kanal) {
+    message.delete(100000)
+  }
 })
 
 client.login(ayarlar.token);
