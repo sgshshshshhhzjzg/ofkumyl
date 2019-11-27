@@ -17,7 +17,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'utlrasohbettemizleyiciaç',
+  name: 'ultrasohbettemizleyiciaç',
   description: 'sayaç', 
   usage: 'sayaç'
 };
