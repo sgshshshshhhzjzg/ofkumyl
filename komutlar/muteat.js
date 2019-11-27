@@ -22,7 +22,11 @@ Etiketliyorsan Bu Hatayı Alıyorsan O Üyenin Görebildiği Bir Kanalda Susturm
     }
     
     if (!sebep) {
-      return message.reply(`Hata: Sunucuda susturulacak kişiyi veya susturma sebebini yazmadın!`)
+      return message.reply(`Hata: Sunucuda etiketlediğin kişinin susturma sebebini yazmadın!`)
+    }
+    
+    if (!muteTime) {
+      return message.reply(`Hata: Sunucuda  etiketlediğin kişinin susturma süresini yazmadın!`)
     }
     
     message.channel.send(`\`\`\`diff
