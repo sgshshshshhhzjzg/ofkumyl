@@ -8,9 +8,9 @@ if (!kisi) {
   return message.reply("**Kime Tokat Atcağını Yazmalısın**")
 }
  const embed = new Discord.RichEmbed()
- .setDescription(`** ${message.author.username}! Buyur Kardeşim Tokenin**`)
+ .setDescription(`**${kisi} ${message.author.username} Seni Tokatladı Nasıl Hissediyorsun?**`)
  .setColor("BLUE")
- .setImage("https://www.muratkim.com/wp-content/uploads/2019/04/ek%C5%9Fi-s%C3%B6zl%C3%BCk-yazar%C4%B1y%C4%B1m-buradakiler-beni-ele%C5%9Ftiremez_836814.gif")
+ .setImage("https://www.muratkim.com/wp-content/uploads/2019/04/tenor.gif")
  .setTimestamp()
 message.channel.send(embed)
 };
