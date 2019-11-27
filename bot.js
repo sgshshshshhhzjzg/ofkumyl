@@ -420,6 +420,23 @@ for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
     
 });
 
+client.on("message", async msg => {
+const db = require('quick.db');   
+    let i = db.has(`otobsilici_${msg.channel.id+msg.guild.id}`)
+       if (i == true) {   
+              let kanal = db.fetch(`otobsilici_${msg.channel.id+msg.guild.id}`)
 
+  if (msg.channel.id != kanal.id) {
+  if (msg.content.length > 0) {
+
+    if(msg.author.bot === true){
+      msg.delete(120000).then(
+      
+      )
+    }
+  }
+          }
+        }
+})
 
 client.login(ayarlar.token);
