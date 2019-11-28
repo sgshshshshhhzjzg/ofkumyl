@@ -239,7 +239,7 @@ client.on("guildBanAdd", async(guild, user) => {
   const log = db.fetch(`korumaLog_${guild.id}`); 
     if(yashinubanlimit) {
       if(entry.executor.id !== guild.owner.user.id) {
-        if(entry.executor.bot) return
+        
         await db.add(`banlimitP31_${entry.executor.id}`, 1)
         
         client.channels.get(log).send(`\`${user.id}\` - \`${user.tag}\` kişisi ${entry.executor} tarafından **${entry.reason ? entry.reason : "girilmedi"}** nedeni ile yasaklandı! \n${entry.executor} Banları: ${yashinukullanıcıban}`)
@@ -247,9 +247,8 @@ client.on("guildBanAdd", async(guild, user) => {
         if(yashinukullanıcıban >= yashinubanlimit) {
         
           try {
-            guild.member(entry.executor).roles.filter(a => a.hasPermission('BAN_MEMBERS')).forEach(x => guild.member(entry.executor).removeRole(x.id))
-            guild.owner.user.send(`Sunucundan bir yetkili ban limitine ulaştı ve ban yetkisi olan rolleri alındı! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)
-          } catch(err) { }
+                guild.kick(entry.executor.id, "Ban Limit")
+client.channels.get(log).send(`Sunucundan bir yetkili ban limitine ulaştı ve sunucudan atıldı ! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)          } catch(err) { }
           db.delete(`banlimitP31_${entry.executor.id}`)
         }
       }
@@ -267,7 +266,7 @@ client.on("channelDelete", async(channel) => {
   const log = db.fetch(`korumaLog_${guild.id}`); 
     if(yashinukanallimit) {
       if(entry.executor.id !== guild.owner.user.id) {
-        if(entry.executor.bot) return
+        
         await db.add(`klimitP31_${entry.executor.id}`, 1)
         
         client.channels.get(log).send(`\`${channel.name}\` adlı kanal ${entry.executor} tarafından silindi!`)
@@ -294,7 +293,7 @@ client.on("roleDelete", async(role) => {
   const log = db.fetch(`korumaLog_${guild.id}`); 
     if(yashinukanallimit) {
       if(entry.executor.id !== "sadrfjhqweqwequj") {
-        if(entry.executor.bot) return
+        
         await db.add(`rlimitP31_${entry.executor.id}`, 1)
         
         client.channels.get(log).send(`\`${role.name}\` adlı rol ${entry.executor} tarafından silindi!`)
