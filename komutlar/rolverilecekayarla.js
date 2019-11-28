@@ -6,7 +6,7 @@ exports.run = async (client, message,args) => {
   let komutum = client.cmdd
         if(komutum[message.guild.id]) {
             for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
-              if (!args[0]) return message.channel.send(`${client.emojis.get("647760202875142154")} Rol Yetkilisi Rolünü Ayarlamak İçin, Belirlenen Rolü Etiketlemelisiniz
+              if (!args[0]) return message.channel.send(`${client.emojis.get("647760202875142154")} Rol Yetkilisi Tarafından Verilecek Rolü Ayarlamak İçin, Belirlenen Rolü Etiketlemelisiniz
 Örnek: \`!rol-yetkilisi-ayarla komutismi @rol\`
 
 Eğer Etiketlenmiyorsa Rol Ayarlarından \`O Role Herkese Bu Rolden Bahsetme Yetkisi Tanı Vermelisiniz.\``)
@@ -14,7 +14,7 @@ Eğer Etiketlenmiyorsa Rol Ayarlarından \`O Role Herkese Bu Rolden Bahsetme Yet
                    
                     const rol = message.mentions.roles.first()
                     if (!rol) {
-                      return message.channel.send(`${client.emojis.get("647760202875142154")} Rol Yetkilisi Rolünü Ayarlamak İçin, Belirlenen Rolü Etiketlemelisiniz
+                      return message.channel.send(`${client.emojis.get("647760202875142154")} Rol Yetkilisi Tarafından Verilecek Rolü Ayarlamak İçin, Belirlenen Rolü Etiketlemelisiniz
 Örnek: \`!rol-yetkilisi-ayarla ${args[0]} @rol\`
 
 Eğer Etiketlenmiyorsa Rol Ayarlarından \`O Role Herkese Bu Rolden Bahsetme Yetkisi Tanı Vermelisiniz.\``)
@@ -22,12 +22,12 @@ Eğer Etiketlenmiyorsa Rol Ayarlarından \`O Role Herkese Bu Rolden Bahsetme Yet
                     db.set(`rolkomut-${args[0]}-rolyetki_${message.guild.id}`, rol.id)
                     
                     const embed = new Discord.RichEmbed()
-                    .setDescription(":robot: Rol Yetkilisini Ayarladım! :robot:")
+                    .setDescription(":robot: Rol Yetkilisinin Komutla Vereceği Rolü Ayarladım! :robot:")
                     .setColor("GREEN")
                     .addField(`${client.emojis.get("647746144155467786")}: Verildi`, rol)
                     return message.channel.send(embed)
                 } else {
-                 return message.channel.send(`${client.emojis.get("647760202875142154")} Rol Yetkilisi Rolünü Ayarlamak İçin, Bir Komut İsmi Girmelisin
+                 return message.channel.send(`${client.emojis.get("647760202875142154")} Verilecek Rolü Ayarlamak İçin, Doğru Bir Komut İsmi Girmelisin
 Örnek: \`!rol-yetkilisi-ayarla komutismi @rol\`
 
 Eğer Etiketlenmiyorsa Rol Ayarlarından \`O Role Herkese Bu Rolden Bahsetme Yetkisi Tanı Vermelisiniz.\``)
