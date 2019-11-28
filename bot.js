@@ -18,6 +18,9 @@ const queue = new Map();
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
+let komutum = JSON.parse(fs.readFileSync("./komut.json", "utf8"));
+
+client.cmdd = komutum
 
 const app = express();
 app.get("/", (request, response) => {
@@ -427,7 +430,7 @@ client.on("message",async  message => {
 
   if (!message.guild) return;
   
-let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+let prefix = "-"
 
   if(message.content.startsWith(prefix)) {
         let komutum = client.cmdd
@@ -435,7 +438,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
             for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
                 if(message.content.slice(prefix.length) === Object.keys(komutum[message.guild.id][i])[0]) {
                    
-                    message.channel.send(komutum[message.guild.id][i][Object.keys(komutum[message.guild.id][i])])
+                    message.channel.send(Object.keys(komutum[message.guild.id][i])[0])
                   
                     return
                 }
