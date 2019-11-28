@@ -437,8 +437,11 @@ let prefix = "-"
         if(komutum[message.guild.id]) {
             for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
                 if(message.content.slice(prefix.length) === Object.keys(komutum[message.guild.id][i])[0]) {
-                   
-                    message.channel.send("sa")
+                    db.delete(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-logkanal_${message.guild.id}`)
+                    db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-rolyetki_${message.guild.id}`)
+                    db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-vrol_${message.guild.id}`)
+
+                    if (!message)
                   
                     return
                 }
