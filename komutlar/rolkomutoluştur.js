@@ -2,13 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db')
 const fs = require('fs')
 exports.run = async (client, message,args) => {
-const komut = args[0]  
-
-if (komut.length <= 1) {
-  return message.channel.send(`Komutunuz En Az \`1\` Haneli Olmalıdır.`)
-}
-
-  let prefix = client.ayar.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix
+  let prefix = "!"
 
 	
   let x = args[0]
@@ -31,14 +25,14 @@ if (komut.length <= 1) {
 	if(komutlar[message.guild.id]) {
 		for (var i = 0; i < Object.keys(komutlar[message.guild.id]).length; i++) {
 			if(args[0] === Object.keys(komutlar[message.guild.id][i])[0].toString()) {
-				array.push(JSON.parse(`{"${Object.keys(komutlar[message.guild.id][i])[0]}: "${args.slice(1).join(" ").replace("\n", "\\n")}"}`))
+				array.push(JSON.parse(`{${Object.keys(komutlar[message.guild.id][i])[0]}`))
 			} else {
 				array.push(JSON.parse(`{"${Object.keys(komutlar[message.guild.id][i])[0]}": "${komutlar[message.guild.id][i][Object.keys(komutlar[message.guild.id][i])].replace("\n", "\\n")}"}`))
 			}
 			kontrol2.push(Object.keys(komutlar[message.guild.id][i])[0].toString())
 		}
 		if(!kontrol2.includes(args[0])) {
-			array.push(JSON.parse(`{"${args[0]}": "${args.slice(1).join(" - ").replace("\n", "\\n")}"}`))
+			array.push(JSON.parse(`{${args[0]}`))
 			komutlar[message.guild.id] = array
 
 			fs.writeFile("./komut.json", JSON.stringify(komutlar), (err) => {

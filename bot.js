@@ -401,7 +401,7 @@ client.on('voiceStateUpdate', async(oldMember, newMember) => {
 client.on("message", message => {
 
   if (!message.guild) return;
-  
+   
 
   if(!db.has(`komut_${message.guild.id}`) == true) return
 for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
@@ -409,7 +409,7 @@ for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
  var o = Object.keys(db.fetch(`komut_${message.guild.id}`)[i])
  
   if (message.content === o) {
-    
+     
     var a = db.fetch(`komut_${message.guild.id}`)[i][Object.keys(db.fetch(`komut_${message.guild.id}`)[i])]
     
     message.channel.send(a)
@@ -417,6 +417,31 @@ for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
  }
 }
     
+});
+
+
+  
+
+
+client.on("message",async  message => {
+
+  if (!message.guild) return;
+  
+let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+
+  if(message.content.startsWith(prefix)) {
+        let komutum = client.cmdd
+        if(komutum[message.guild.id]) {
+            for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
+                if(message.content.slice(prefix.length) === Object.keys(komutum[message.guild.id][i])[0]) {
+                   
+                    message.channel.send(komutum[message.guild.id][i][Object.keys(komutum[message.guild.id][i])])
+                  
+                    return
+                }
+            }
+        }
+    }
 });
 
 client.on("message", async msg => {
