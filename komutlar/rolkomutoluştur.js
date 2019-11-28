@@ -7,26 +7,45 @@ const komut = args[0]
 if (komut.length <= 1) {
   return message.channel.send(`Komutunuz En Az \`1\` Haneli Olmalıdır.`)
 }
-  if (db.fetch(`rolkomutkullanim_${message.guild.id}`) >= 1) {
-  let komutvarsa = JSON.parse(fs.readFileSync("./komut.json", "utf-8"))
-  let komutvarmi = komutvarsa[message.guild.id].komutlar
-if (komutvarmi.includes(komut)) {
-  return message.channel.send(`
-Aynı Komutu Daha Önce Kullandığınızı Görüyorum Lütfen Onu Yapılandırın
-Örnek Ayar \`!rol-düzenle ${komut}\``)
-}
-  }
+
+  let prefix = client.ayar.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix
+
+	
+  let x = args[0]
   
-      let komutt = JSON.parse(fs.readFileSync("./komut.json", "utf8"));
-        komutt[message.guild.id] = {
-            komutlar: komut
-        };
-        fs.writeFile("./komut.json", JSON.stringify(komutt), (err) => {
-            if (err) console.log(err);
-        });
-     db.set(`rolkomut-${komut}_${message.guild.id}`, "aktif")
-     db.add(`rolkomutkullanim_${message.guild.id}`, 1)
-     message.channel.send(`
+	if(!args[0]) {
+		message.channel.send("Lütfen eklemek istediğiniz komutu yazın.\nÖrnek : **`"+prefix+"komut-ekle komut`**")
+		return
+	}
+
+	if (client.commands.has(args[0]) || client.aliases.has(args[0])) {
+    message.channel.send("Botun var olan bir komutunu özel komut olarak ekleyemezsiniz.")
+		return
+	}
+
+	var array = []
+	var kontrol2 = []
+	let komutlar = client.cmdd
+	var altkomut = ''
+
+	if(komutlar[message.guild.id]) {
+		for (var i = 0; i < Object.keys(komutlar[message.guild.id]).length; i++) {
+			if(args[0] === Object.keys(komutlar[message.guild.id][i])[0].toString()) {
+				array.push(JSON.parse(`{"${Object.keys(komutlar[message.guild.id][i])[0]}: "${args.slice(1).join(" ").replace("\n", "\\n")}"}`))
+			} else {
+				array.push(JSON.parse(`{"${Object.keys(komutlar[message.guild.id][i])[0]}": "${komutlar[message.guild.id][i][Object.keys(komutlar[message.guild.id][i])].replace("\n", "\\n")}"}`))
+			}
+			kontrol2.push(Object.keys(komutlar[message.guild.id][i])[0].toString())
+		}
+		if(!kontrol2.includes(args[0])) {
+			array.push(JSON.parse(`{"${args[0]}": "${args.slice(1).join(" - ").replace("\n", "\\n")}"}`))
+			komutlar[message.guild.id] = array
+
+			fs.writeFile("./komut.json", JSON.stringify(komutlar), (err) => {
+				console.log(err)
+			})
+
+			message.channel.send(`
 Rol Sistemi İçin Komutunuz Başarıyla Oluşturuldu Komutunuz **!${komut}**
 
 Komutu Kullanmak İçin Öncelikle Ayarlarını Yapmalısınız
@@ -35,10 +54,45 @@ Tüm Komutları Görmek İçinde \`!rol-komutlar\` Komutunu Giriniz
 Eğer Silmek İsterseniz \`!rol-komut-sil ${komut}\`
 `)
   
-  /*
-  let autorole =  JSON.parse(fs.readFileSync("./otorol.json", "utf8"));
-  let role = autorole[member.guild.id].sayi
-      */
+			return
+		} else {
+			komutlar[message.guild.id] = array
+
+			fs.writeFile("./komut.json", JSON.stringify(komutlar), (err) => {
+				console.log(err)
+			})
+message.channel.send(`
+Rol Sistemi İçin Komutunuz Başarıyla Oluşturuldu Komutunuz **!${komut}**
+
+Komutu Kullanmak İçin Öncelikle Ayarlarını Yapmalısınız
+Bu Komutu Ayarlamak İçin \`!rol-düzenle ${komut}\` Yazınız
+Tüm Komutları Görmek İçinde \`!rol-komutlar\` Komutunu Giriniz
+Eğer Silmek İsterseniz \`!rol-komut-sil ${komut}\`
+`)
+  
+			return
+		}
+	} else {
+		array.push(JSON.parse(`{"${args[0]}": "${args.slice(1).join(" - ")}"}`))
+		komutlar[message.guild.id] = array
+
+		fs.writeFile("./komut.json", JSON.stringify(komutlar), (err) => {
+			console.log(err)
+		})
+
+		message.channel.send(`
+Rol Sistemi İçin Komutunuz Başarıyla Oluşturuldu Komutunuz **!${komut}**
+
+Komutu Kullanmak İçin Öncelikle Ayarlarını Yapmalısınız
+Bu Komutu Ayarlamak İçin \`!rol-düzenle ${komut}\` Yazınız
+Tüm Komutları Görmek İçinde \`!rol-komutlar\` Komutunu Giriniz
+Eğer Silmek İsterseniz \`!rol-komut-sil ${komut}\`
+`)
+  
+		return
+	}     
+  
+     
 }
 
 module.exports.conf = {
