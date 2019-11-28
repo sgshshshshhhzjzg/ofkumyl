@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
 
 	var array = []
 	var kontrol2 = []
-	let komutlar = client.cmdd
+	let komutlar = client.cmddd
 	var altkomut = ''
 
 	if(komutlar[message.guild.id]) {
@@ -47,7 +47,7 @@ exports.run = async (client, message, args) => {
 
 			const embed = new Discord.RichEmbed()
 				.setAuthor("Yeni özel otocevap oluşturuldu!")
-			  .setDescription(`Artık \`${prefix}${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
+			  .setDescription(`Artık \`${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
 				.setColor("BLUE")
 			message.channel.send({embed})
 			return
@@ -60,7 +60,7 @@ exports.run = async (client, message, args) => {
 
 			const embed = new Discord.RichEmbed()
 				.setAuthor(`${customArgs[0]} adlı özel otocevap güncellendi!`)
-				.setDescription(`Artık \`${prefix}${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
+				.setDescription(`Artık \`${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
 				.setColor("BLUE")
 			message.channel.send({embed})
 			return
@@ -75,7 +75,7 @@ exports.run = async (client, message, args) => {
 
 		const embed = new Discord.RichEmbed()
 			.setAuthor("Yeni özel otocevap oluşturuldu!")
-			.setDescription(`Artık \`${prefix}${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
+			.setDescription(`Artık \`${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
 			.setColor("BLUE")
 		message.channel.send({embed})
 		return

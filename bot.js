@@ -415,7 +415,7 @@ client.on("message", message => {
         if(komutum[message.guild.id]) {
             for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
                 if(message.content.startsWith(Object.keys(komutum[message.guild.id][i])[0])) {
-                    
+                  message.channel.send(komutum[message.guild.id][i][Object.keys(komutum[message.guild.id][i])])
                 }
             }
         } 
@@ -442,7 +442,7 @@ let prefix = "-"
                     const vrol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-vrol_${message.guild.id}`)
                     const kisi = message.mentions.users.first()
                     if (!kisi) return message.reply(`Hata: Kullanıcı Bulunamadı.
-Örnek Kullanım : !mahmut @Mahmut`)
+Örnek Kullanım : !${Object.keys(komutum[message.guild.id][i])[0]} @Mahmut`)
                     if (!logkanal) return message.reply(`Log Kanalı Ayarlanmamış Bu Komutu Tüm Özellikleri Ayarlamadan Kullanamazsınız
 Düzenleme Komutu: !rol-düzenle mahmut`)
                   if (!yetkirol) return message.reply(`Rol Yöneticisi Ayarlanmamış Bu Komutu Tüm Özellikleri Ayarlamadan Kullanamazsınız
