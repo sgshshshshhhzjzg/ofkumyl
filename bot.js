@@ -438,7 +438,7 @@ let prefix = "-"
             for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
                 if(message.content.slice(prefix.length) === Object.keys(komutum[message.guild.id][i])[0]) {
                    
-                    message.channel.send(Object.keys(komutum[message.guild.id][i])[0])
+                    message.channel.send("sa")
                   
                     return
                 }
