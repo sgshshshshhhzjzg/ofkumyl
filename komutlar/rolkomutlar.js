@@ -3,36 +3,39 @@ const db = require('quick.db')
 const fs = require('fs')
 exports.run = async (client, message,args) => {
 
-  let komutum = client.cmdd
-        if(komutum[message.guild.id]) {
-            for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
-              if (!args[0]) return;
-              if(args[0] === Object.keys(komutum[message.guild.id][i])[0]) {
-                   
-                                       
-                    const embed = new Discord.RichEmbed()
-                    .setDescription(":robot: Bu Komutu Böyle Düzenleyiniz. :robot:")
+  
+	var str = ''                   
+       let komutlar = client.cmdd
+        if(!komutlar[message.guild.id]) {
+            str = "Sunucu içi özel komut bulunmuyor."
+          
+        } else {
+            for (var i = 0; i < komutlar[message.guild.id].length; i++) {
+                str += Object.keys(komutlar[message.guild.id][i])+"\n"
+              const embed = new Discord.RichEmbed()
+                    .setDescription(":robot: Sunucuya Ayarlı Komutlar. :robot:")
                     .setColor("GREEN")
-                    .addField(`:star: Log Kanalı`, "!rol-log-kanal " + args[0] + " #logkanal")
+                    .addField(`:star: Komut`, "!" + Object.keys(komutlar[message.guild.id][i]) + " @üye")
+                    .addField(`:arrow_left:  Üyeden Geri Almak İçin`, "!" + Object.keys(komutlar[message.guild.id][i]) + "sil @üye")
+                    .addField(`:star: Silmek İçin`, "!rol-komut-sil " + Object.keys(komutlar[message.guild.id][i]))
                     return message.channel.send(embed)
-                } else {
-                 return message.channel.send(`${client.emojis.get("647760202875142154")} Böyle Bir Komut Bulamadım.
-\`!rol-komutlar\` Yazarak Komutları Görebilirsiniz`)
-                }
             }
         }
+
+                    
+  
      
 }
 
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['rol-komutlar'],
+  aliases: ['rol-komutları'],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'rolkomutlar',
+  name: 'rolkomutları',
   description: '',
   usage: ''
 };

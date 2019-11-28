@@ -435,7 +435,7 @@ let prefix = "-"
         let komutum = client.cmdd
         if(komutum[message.guild.id]) {
             for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
-                if(message.content.includes(prefix + Object.keys(komutum[message.guild.id][i])[0])) {
+                if(message.content.startsWith(prefix + Object.keys(komutum[message.guild.id][i])[0])) {
                     const logkanal = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-logkanal_${message.guild.id}`)
                     const yetkirol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-rolyetki_${message.guild.id}`)
                     const srol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-srol_${message.guild.id}`)
@@ -475,7 +475,7 @@ Düzenleme Komutu: !rol-düzenle mahmut`)
                   client.channels.get(logkanal).send(embed)
                  
                  const embed2 = new Discord.RichEmbed()
-                  .setDescription(":robot: Ayarlanılan Rol Başarıyla Verildi :robot:")
+                  .setDescription(":robot: Ayarlanılan Rol Başarıyla Silindi :robot:")
                   .setColor("RED")
                   .addField(":star: Rolü Silinen Kişi", kisi)
                   .addField(`${client.emojis.get("647746144155467786")}: Silindi`, message.guild.roles.get(vrol).name)
@@ -491,6 +491,53 @@ Düzenleme Komutu: !rol-düzenle mahmut`)
   
     }
 });
+
+
+client.on("message",async  message => {
+
+  if (!message.guild) return;
+  
+let prefix = "-"
+
+  
+        let komutum = client.cmdd
+        if(komutum[message.guild.id]) {
+            for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
+                if(message.content.startsWith(prefix + Object.keys(komutum[message.guild.id][i])[0]+"sil")) {
+                    const logkanal = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-logkanal_${message.guild.id}`)
+                    const yetkirol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-rolyetki_${message.guild.id}`)
+                    const srol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-srol_${message.guild.id}`)
+                    const vrol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-vrol_${message.guild.id}`)
+                    const kisi = message.mentions.users.first()
+                    if (!kisi) return message.reply(`Hata: Kullanıcı Bulunamadı.
+Örnek Kullanım : !${Object.keys(komutum[message.guild.id][i])[0]} @Mahmut`)
+                    if (!logkanal) return message.reply(`Log Kanalı Ayarlanmamış Bu Komutu Tüm Özellikleri Ayarlamadan Kullanamazsınız
+Düzenleme Komutu: !rol-düzenle mahmut`)
+                  if (!yetkirol) return message.reply(`Rol Yöneticisi Ayarlanmamış Bu Komutu Tüm Özellikleri Ayarlamadan Kullanamazsınız
+Düzenleme Komutu: !rol-düzenle mahmut`)
+                    if (!vrol) return message.reply(`Verilecek Rol Ayarlanmamış Bu Komutu Tüm Özellikleri Ayarlamadan Kullanamazsınız
+Düzenleme Komutu: !rol-düzenle mahmut`)
+                  
+                  
+           if (message.member.roles.has(yetkirol)) {       
+                  message.guild.members.get(kisi.id).addRole(vrol)
+                  const embed2 = new Discord.RichEmbed()
+                  .setDescription(":robot: Ayarlanılan Rol Başarıyla Silindi :robot:")
+                  .setColor("RED")
+                  .addField(":star: Rolü Silinen Kişi", kisi)
+                  .addField(`${client.emojis.get("647746144155467786")}: Silindi`, message.guild.roles.get(vrol).name)
+                 message.channel.send(embed2) 
+                 return client.channels.get(logkanal).send(embed2)
+             }  else {
+    return message.reply("Rol Vermek İçin Sunucu Sahibinin Ayarladığı Role Sahip Olmalısınız.")
+  } 
+                  } 
+            }
+  
+    }
+});
+
+
 
 client.on("message", async msg => {
     let i = db.has(`otobsilici_${msg.channel.id+msg.guild.id}`)
