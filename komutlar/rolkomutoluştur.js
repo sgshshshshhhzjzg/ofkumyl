@@ -7,13 +7,16 @@ const komut = args[0]
 if (komut.length <= 1) {
   return message.channel.send(`Komutunuz En Az \`1\` Haneli Olmalıdır.`)
 }
+  if (db.fetch(`rolkomutkullanim_${message.guild.id}`) >= 1) {
   let komutvarsa = JSON.parse(fs.readFileSync("./komut.json", "utf-8"))
   let komutvarmi = komutvarsa[message.guild.id].komutlar
-if (komutvarmi.includes(komutvarmi)) {
+if (komutvarmi.includes(komut)) {
   return message.channel.send(`
 Aynı Komutu Daha Önce Kullandığınızı Görüyorum Lütfen Onu Yapılandırın
 Örnek Ayar \`!rol-düzenle ${komut}\``)
 }
+  }
+  
       let komutt = JSON.parse(fs.readFileSync("./komut.json", "utf8"));
         komutt[message.guild.id] = {
             komutlar: komut
@@ -21,7 +24,8 @@ Aynı Komutu Daha Önce Kullandığınızı Görüyorum Lütfen Onu Yapılandır
         fs.writeFile("./komut.json", JSON.stringify(komutt), (err) => {
             if (err) console.log(err);
         });
-     db.set(`${komut}_${message.guild.id}`, "aktif")
+     db.set(`rolkomut-${komut}_${message.guild.id}`, "aktif")
+     db.add(`rolkomutkullanim_${message.guild.id}`, 1)
      message.channel.send(`
 Rol Sistemi İçin Komutunuz Başarıyla Oluşturuldu Komutunuz **!${komut}**
 
