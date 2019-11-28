@@ -22,6 +22,10 @@ let komutum = JSON.parse(fs.readFileSync("./komut.json", "utf8"));
 
 client.cmdd = komutum
 
+let komutum2 = JSON.parse(fs.readFileSync("./otocevap.json", "utf8"));
+
+client.cmddd = komutum2
+
 const app = express();
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping tamamdır.");
@@ -406,20 +410,15 @@ client.on("message", message => {
   if (!message.guild) return;
    
 
-  if(!db.has(`komut_${message.guild.id}`) == true) return
-for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
   
- var o = Object.keys(db.fetch(`komut_${message.guild.id}`)[i])
- 
-  if (message.content === o) {
-     
-    var a = db.fetch(`komut_${message.guild.id}`)[i][Object.keys(db.fetch(`komut_${message.guild.id}`)[i])]
-    
-    message.channel.send(a)
-  
- }
-}
-    
+        let komutum = client.cmddd
+        if(komutum[message.guild.id]) {
+            for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
+                if(message.content.startsWith(Object.keys(komutum[message.guild.id][i])[0])) {
+                    
+                }
+            }
+        } 
 });
 
 
@@ -439,6 +438,7 @@ let prefix = "-"
                 if(message.content.includes(prefix + Object.keys(komutum[message.guild.id][i])[0])) {
                     const logkanal = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-logkanal_${message.guild.id}`)
                     const yetkirol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-rolyetki_${message.guild.id}`)
+                    const srol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-srol_${message.guild.id}`)
                     const vrol = db.fetch(`rolkomut-${Object.keys(komutum[message.guild.id][i])[0]}-vrol_${message.guild.id}`)
                     const kisi = message.mentions.users.first()
                     if (!kisi) return message.reply(`Hata: Kullanıcı Bulunamadı.
@@ -449,6 +449,8 @@ Düzenleme Komutu: !rol-düzenle mahmut`)
 Düzenleme Komutu: !rol-düzenle mahmut`)
                     if (!vrol) return message.reply(`Verilecek Rol Ayarlanmamış Bu Komutu Tüm Özellikleri Ayarlamadan Kullanamazsınız
 Düzenleme Komutu: !rol-düzenle mahmut`)
+                  
+                  if (!srol) {
            if (message.member.roles.has(yetkirol)) {       
                   message.guild.members.get(kisi.id).addRole(vrol)
                   const embed = new Discord.RichEmbed()
@@ -457,7 +459,30 @@ Düzenleme Komutu: !rol-düzenle mahmut`)
                   .addField(":star: Rolü Veren Kişi", message.author)
                   .addField(":star: Rolü Alan Kişi", kisi)
                   .addField(`${client.emojis.get("647746144155467786")}: Verildi`, message.guild.roles.get(vrol).name)
+                  message.channel.send(embed) 
+                  return client.channels.get(logkanal).send(embed)
+             } else {
+               if (message.member.roles.has(yetkirol)) {       
+                  message.guild.members.get(kisi.id).removeRole(srol)
+                 message.guild.members.get(kisi.id).addRole(vrol)
+                  const embed = new Discord.RichEmbed()
+                  .setDescription(":robot: Ayarlanılan Rol Başarıyla Verildi :robot:")
+                  .setColor("GREEN")
+                  .addField(":star: Rolü Veren Kişi", message.author)
+                  .addField(":star: Rolü Alan Kişi", kisi)
+                  .addField(`${client.emojis.get("647746144155467786")}: Verildi`, message.guild.roles.get(vrol).name)
+                 message.channel.send(embed) 
                   client.channels.get(logkanal).send(embed)
+                 
+                 const embed2 = new Discord.RichEmbed()
+                  .setDescription(":robot: Ayarlanılan Rol Başarıyla Verildi :robot:")
+                  .setColor("RED")
+                  .addField(":star: Rolü Silinen Kişi", kisi)
+                  .addField(`${client.emojis.get("647746144155467786")}: Silindi`, message.guild.roles.get(vrol).name)
+                 message.channel.send(embed2) 
+                 return client.channels.get(logkanal).send(embed2)
+             }
+             }
                 } else {
     return message.reply("Rol Vermek İçin Sunucu Sahibinin Ayarladığı Role Sahip Olmalısınız.")
   } 

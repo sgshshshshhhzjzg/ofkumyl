@@ -1,37 +1,92 @@
 const Discord = require('discord.js'); 
 const db = require('quick.db'); 
-
+const fs = require('fs'); 
 exports.run = async (client, message, args) => { 
-  
-  
-  var x = "İsimli Oto Cevap Başarıyla Oluşturuldu!"
-  var y = `${args[0]} yazıldığında, {cevap} olarak cevap verecektir!`
-  
-  if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu komutu kullanabilmek için \`Yönetici\` yetkisine sahip olmalısın!`); 
+  const customArgs = args.join(' ').split(" - ")
+  let x = customArgs[1]
+  let prefix = "-"
+	if(!customArgs[0]) {
     
-  if (!args[0]) return message.reply("Lütfen cevap verilecek eylemin adını yazın!")
-  if (!args.slice(1).join(' ')) return message.reply("Lütfen bişey yazıldığında verilecek cevabı yazın!")
-    
-  
-    
-  let obj = JSON.parse('{"'+args[0]+'":"'+args.slice(1).join(' ')+'"}')
-  
-  var i = db.push(`komut_${message.guild.id}`, obj)
-  
+		message.channel.send("Lütfen eklemek istediğiniz komutu yazın.\nÖrnek : **`"+prefix+"oto-cevap-ekle komut - açıklama`**")
+		return
+	}
 
-    var embed = new Discord.RichEmbed()
-    .setTimestamp()
-    .setColor("BLUE")
-   .setTitle(`${args[0]} ${x}`) 
-   .setDescription(y.replace("{cevap}", args.slice(1).join(' '))) 
-    message.channel.send(embed)
-  
+	if(!customArgs.slice(1).join(" - ")) {
+    
+		message.channel.send("Lütfen komut açıklamasını yazın.\nÖrnek : **`"+prefix+"oto-cevap-ekle komut - açıklama`**")
+		return
+	}
+
+	if (client.commands.has(customArgs[0]) || client.aliases.has(customArgs[0])) {
+		
+    message.channel.send("Botun var olan bir komutunu özel otocevap olarak ekleyemezsiniz.")
+		return
+	}
+
+	var array = []
+	var kontrol2 = []
+	let komutlar = client.cmdd
+	var altkomut = ''
+
+	if(komutlar[message.guild.id]) {
+		for (var i = 0; i < Object.keys(komutlar[message.guild.id]).length; i++) {
+			if(customArgs[0] === Object.keys(komutlar[message.guild.id][i])[0].toString()) {
+				array.push(JSON.parse(`{"${Object.keys(komutlar[message.guild.id][i])[0]}": "${customArgs.slice(1).join(" - ").replace("\n", "\\n")}"}`))
+			} else {
+				array.push(JSON.parse(`{"${Object.keys(komutlar[message.guild.id][i])[0]}": "${komutlar[message.guild.id][i][Object.keys(komutlar[message.guild.id][i])].replace("\n", "\\n")}"}`))
+			}
+			kontrol2.push(Object.keys(komutlar[message.guild.id][i])[0].toString())
+		}
+		if(!kontrol2.includes(customArgs[0])) {
+			array.push(JSON.parse(`{"${customArgs[0]}": "${customArgs.slice(1).join(" - ").replace("\n", "\\n")}"}`))
+			komutlar[message.guild.id] = array
+
+			fs.writeFile("./otocevap.json", JSON.stringify(komutlar), (err) => {
+				console.log(err)
+			})
+
+			const embed = new Discord.RichEmbed()
+				.setAuthor("Yeni özel otocevap oluşturuldu!")
+			  .setDescription(`Artık \`${prefix}${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
+				.setColor("BLUE")
+			message.channel.send({embed})
+			return
+		} else {
+			komutlar[message.guild.id] = array
+
+			fs.writeFile("./otocevap.json", JSON.stringify(komutlar), (err) => {
+				console.log(err)
+			})
+
+			const embed = new Discord.RichEmbed()
+				.setAuthor(`${customArgs[0]} adlı özel otocevap güncellendi!`)
+				.setDescription(`Artık \`${prefix}${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
+				.setColor("BLUE")
+			message.channel.send({embed})
+			return
+		}
+	} else {
+		array.push(JSON.parse(`{"${customArgs[0]}": "${customArgs.slice(1).join(" - ")}"}`))
+		komutlar[message.guild.id] = array
+
+		fs.writeFile("./otocevap.json", JSON.stringify(komutlar), (err) => {
+			console.log(err)
+		})
+
+		const embed = new Discord.RichEmbed()
+			.setAuthor("Yeni özel otocevap oluşturuldu!")
+			.setDescription(`Artık \`${prefix}${customArgs[0]}\` yazdığınızda bot \`${customArgs.slice(1).join(" - ")}\` olarak karşılık verecektir.`)
+			.setColor("BLUE")
+		message.channel.send({embed})
+		return
+	}
+   
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ["oto-cevap-ekle"],
   permLevel: 0
 };
 
