@@ -5,9 +5,9 @@ const ms = require("ms")
 exports.run = async (client, message,args) => {
 
    
-  if (db.fetch(`goldpuan_${message.author.id}`) >= 5000) {
+  if (db.fetch(`goldpuan_${message.author.id}`) >= 10000) {
 let kod31 = "";
-  let kod = "123"
+  let kod = "123456789"
   for(var k = 0; k < 1; k++) {
     kod31 = (kod31 + kod.charAt(Math.floor(Math.random() * kod.length)));
   }
@@ -23,12 +23,12 @@ let kod31 = "";
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['ptopaz', "topazkasa", "ptopazkasa"],
+  aliases: ['pyakut', "yakutkasa", "pyakutkasa"],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'p-topaz',
+  name: 'p-yakut',
   description: '',
   usage: ''
 };
