@@ -299,7 +299,7 @@ client.on("roleDelete", async(role) => {
   let yashinukullanıcılimit = await db.fetch(`rlimitP31_${entry.executor.id}`)
   const log = db.fetch(`korumaLog_${guild.id}`); 
     if(yashinukanallimit) {
-      if(entry.executor.id !== "sadrfjhqweqwequj") {
+      if(entry.executor.id !== guild.owner.user.id) {
         
         await db.add(`rlimitP31_${entry.executor.id}`, 1)
         
@@ -587,7 +587,7 @@ client.on("message", msg => {
   if (!reklama) return
   var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
     if (regex.test(msg.content) == true) {
-    if (!msg.member.hasPermission("BAN_MEMBERS")) {
+    if (msg.member.hasPermission("BAN_MEMBERS")) {
       return;
     }
     
@@ -606,7 +606,7 @@ client.on("message", msg => {
   if (!msg.channel.id == reklama) return;
   const kelime = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
   if (kelime.some(reklam => msg.content.includes(reklam))) {
-    if (!msg.member.hasPermission("BAN_MEMBERS")) {
+    if (msg.member.hasPermission("BAN_MEMBERS")) {
       return;
     }
     
@@ -743,6 +743,33 @@ client.on("message", msg => {
     }
 }
     }
+});
+client.on("message", async msg => {
+const request = require('node-superfetch');
+const db = require('quick.db');
+const ms = require('parse-ms')
+let timeout = 600000 //süresini dilediğiniz gibi kısaltabilirsiniz.
+let dakdest = await db.fetch(`goldsure_${msg.author.id}`);
+let i = db.fetch(`goldsure_${msg.author.id}`)
+          if (db.has(`goldsure_${msg.author.id}`) == true) {
+    if (dakdest !== null && timeout - (Date.now() - dakdest) > 0) {
+        let time = ms(timeout - (Date.now() - dakdest));
+    } else {
+  if(msg.author.bot) return;   
+  if (msg.content.length > 1) {
+  var embed = new Discord.RichEmbed()
+  .setAuthor(`MC-EŞŞEK`,`${msg.author.avatarURL || msg.author.displayAvatarURL}`)
+  .setDescription(`${client.emojis.get("650068016012328961")} Hizzaya Geçin! Burada Bir Gold Üye Belirdi! <@${msg.author.id}>`)
+  .setColor("BLUE")
+  msg.channel.send(embed)
+
+  }
+};
+          }
+   else if (i == undefined) {           
+          }
+          if (!i) return;
+        
 });
 
 client.login(ayarlar.token);
