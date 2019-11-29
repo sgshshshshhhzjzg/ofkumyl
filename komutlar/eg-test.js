@@ -6,11 +6,12 @@ exports.run = (client, message, args) => {
 
  var user = message.mentions.users.first() || message.author; 
   
-  Jimp.read(`https://cdn.discordapp.com/attachments/649581228835602432/650049417885253643/topazac.png`, (err, image) => {
+  Jimp.read(`https://cdn.discordapp.com/attachments/649581228835602432/650052923728068628/unknown.png`, (err, image) => {
     image.resize(794, 598)
+image.greyscale();                // remove colour from the image
 
     Jimp.read(user.avatarURL, (err, avatar) => {
-        avatar.resize(275, 275)
+        avatar.resize(275, 275) 
         image.composite(avatar, 269, 39).write(`./resimler/kralol/kralol-${message.author.id}.png`);
         setTimeout(function() {
             message.channel.send(new Discord.Attachment(`./resimler/kralol/kralol-${message.author.id}.png`));
