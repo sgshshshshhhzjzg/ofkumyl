@@ -15,7 +15,7 @@ let kod31 = "";
   }
  
  db.add(`goldsure_{message.author.id}`, kod31)
-db.delete(`goldsure_{message.author.id}`)
+ db.set(`goldpuan_{message.author.id}`, db.fetch(`goldpuan_${message.author.id}`) - 5000)
  var user = message.author; 
   
   Jimp.read(`https://cdn.discordapp.com/attachments/649581228835602432/650052923728068628/unknown.png`, async(err, image) => {
