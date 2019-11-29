@@ -13,10 +13,10 @@ let kod31 = "";
   for(var k = 0; k < 1; k++) {
     kod31 = (kod31 + kod.charAt(Math.floor(Math.random() * kod.length)));
   }
- 
- db.add(`goldsure_{message.author.id}`, kod31)
- db.set(`goldpuan_{message.author.id}`, db.fetch(`goldpuan_${message.author.id}`) - 5000)
- var user = message.author; 
+ const kod32 = require("useful-tools").hesapla(`${db.fetch(`goldpuan_${message.author.id}`)}-5000`)
+ db.add(`goldsure_${message.author.id}`, kod31)
+ db.set(`goldpuan_${message.author.id}`, kod32)
+    var user = message.author; 
   
   Jimp.read(`https://cdn.discordapp.com/attachments/649581228835602432/650052923728068628/unknown.png`, async(err, image) => {
     await image.resize(794, 598)
