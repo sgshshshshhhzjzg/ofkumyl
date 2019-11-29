@@ -3,13 +3,15 @@ const db = require('quick.db')
 const fs = require("fs")
 const ms = require("ms")
 exports.run = async (client, message,args) => {
+
+   
       let kullanildii = JSON.parse(fs.readFileSync('./ghediye.json', 'utf8'));
   if (!kullanildii[message.guild.id]) kullanildii[message.guild.id] = {
     gunlukkullanim: 0
   }
   if (kullanildii[message.guild.id].gunlukkullanim == 0)
   {
-
+        
 let kod31 = "1";
   let kod = "123456789"
   for(var k = 0; k < 3; k++) {
@@ -18,6 +20,7 @@ let kod31 = "1";
  
   db.add(`goldpuan_${message.author.id}`, kod31)
   message.channel.send(kod31)
+  kullanildii[message.guild.id].gunlukkullanim = 1
     
   fs.writeFile('./ghediye.json', JSON.stringify(kullanildii), (err) => {
       if (err) console.error(err)
@@ -29,12 +32,13 @@ let kod31 = "1";
     fs.writeFile('./ghediye.json', JSON.stringify(kullanildii), (err) => {
       if (err) console.error(err)
     })
-  }, ms('24h'));
+  }, ms('12h'));
   
   if (kullanildii[message.guild.id].gunlukkullanim == 1)
   {
-  message.reply("Bu özelliği `(24)` Saat içinde yalnızca 1 kez kullanabilirsiniz")
+  message.reply("Ödülünüzü Alabilmeniz İçin Henüz 24 Saat Beklemeniz Gerek Şuanki Puanınız: " + `\`${db.fetch(`goldpuan_${message.author.id}`)}\`` + client.emojis.get("649963065697107978"))
   }
+
 }
 
 module.exports.conf = {
