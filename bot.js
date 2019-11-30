@@ -754,7 +754,7 @@ let i = db.fetch(`goldsure_${msg.author.id}`)
         let time = ms2(timeout - (Date.now() - dakdest));
     } else {
   if(msg.author.bot) return;   
-  if (msg.content.length > 34) {
+  if (msg.content.length > 64) {
   var embed = new Discord.RichEmbed()
   .setAuthor(`MC-EŞŞEK`,`${msg.author.avatarURL || msg.author.displayAvatarURL}`)
   .setDescription(`${client.emojis.get("650068016012328961")} Hizzaya Geçin! Burada Bir Gold Üye Belirdi! <@${msg.author.id}>`)
