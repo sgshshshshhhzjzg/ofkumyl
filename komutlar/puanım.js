@@ -12,7 +12,7 @@ exports.run = async(client, message, args) => {
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ["kredim"],
   permLevel: 0
 };
 
