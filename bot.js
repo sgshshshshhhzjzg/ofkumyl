@@ -583,7 +583,6 @@ let uwu = false;
 
 client.on("message", msg => {
   const reklama = db.fetch(`linkK_${msg.channel.id}`)
-  if (!msg.channel.id == reklama) return;
   if (!reklama) return
   var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
     if (regex.test(msg.content) == true) {
@@ -603,8 +602,7 @@ client.on("message", msg => {
 client.on("message", msg => {
   const reklama = db.fetch(`reklamK_${msg.channel.id}`)
   if (!reklama) return
-  if (!msg.channel.id == reklama) return;
-  const kelime = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
+    const kelime = ["discord.gg", "discord.me", "discordapp.com", "discord.io", "discord.tk"];
   if (kelime.some(reklam => msg.content.includes(reklam))) {
     if (msg.member.hasPermission("BAN_MEMBERS")) {
       return;
