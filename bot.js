@@ -747,16 +747,16 @@ client.on("message", msg => {
 client.on("message", async msg => {
 const request = require('node-superfetch');
 const db = require('quick.db');
-const ms = require('parse-ms')
+const ms2 = require('parse-ms')
 let timeout = 600000 //süresini dilediğiniz gibi kısaltabilirsiniz.
-let dakdest = await db.fetch(`goldsure_${msg.author.id}`);
+let dakdest = 1
 let i = db.fetch(`goldsure_${msg.author.id}`)
           if (db.has(`goldsure_${msg.author.id}`) == true) {
     if (dakdest !== null && timeout - (Date.now() - dakdest) > 0) {
-        let time = ms(timeout - (Date.now() - dakdest));
+        let time = ms2(timeout - (Date.now() - dakdest));
     } else {
   if(msg.author.bot) return;   
-  if (msg.content.length > 1) {
+  if (msg.content.length > 34) {
   var embed = new Discord.RichEmbed()
   .setAuthor(`MC-EŞŞEK`,`${msg.author.avatarURL || msg.author.displayAvatarURL}`)
   .setDescription(`${client.emojis.get("650068016012328961")} Hizzaya Geçin! Burada Bir Gold Üye Belirdi! <@${msg.author.id}>`)
