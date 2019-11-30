@@ -24,7 +24,7 @@ module.exports.conf = {
 };
 
 module.exports.help = {
-  name: "oyver",
+  name: "gold",
   description: 'Yardım Menüsünü Gösterir.',
   usage: 'yardım'
 };
