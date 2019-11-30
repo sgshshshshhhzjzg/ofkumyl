@@ -761,7 +761,9 @@ let i = db.fetch(`goldsure_${msg.author.id}`)
   .setAuthor(`MC-EŞŞEK`,`${msg.author.avatarURL || msg.author.displayAvatarURL}`)
   .setDescription(`${client.emojis.get("650068016012328961")} Hizzaya Geçin! Burada Bir Gold Üye Belirdi! <@${msg.author.id}>`)
   .setColor("BLUE")
-  msg.channel.send(embed)
+  msg.channel.send(embed).then(message => {
+    message.delete(4000)
+  })
 
   }
 };
@@ -771,5 +773,6 @@ let i = db.fetch(`goldsure_${msg.author.id}`)
           if (!i) return;
         
 });
+
 
 client.login(ayarlar.token);
