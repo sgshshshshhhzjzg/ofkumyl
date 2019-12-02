@@ -238,24 +238,29 @@ client.on("guildMemberRemove", async member => {
   }
 });
 
-
+//Ban Limit
 client.on("guildBanAdd", async(guild, user) => {
-  const log = await guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then(audit => audit.entries.first())
-  const banlimit = "10"
-  const kban = await db.fetch(`banlimitP31_${log.executor.id}`)
-  
-
-  await db.add(`banlimitP31_${log.executor.id}`, 1)
+  const entry = await guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then(audit => audit.entries.first())
+  let yashinubanlimit = await db.fetch(`banlimit31_${guild.id}`)
+  let yashinukullanıcıban = await db.fetch(`banlimitP31_${entry.executor.id}`)
+  const log = db.fetch(`korumaLog_${guild.id}`); 
+    if(yashinubanlimit) {
+      if(entry.executor.id !== guild.owner.user.id) {
         
-        if(kban >= banlimit) {
+        await db.add(`banlimitP31_${entry.executor.id}`, 1)
+        
+        client.channels.get(log).send(`\`${user.id}\` - \`${user.tag}\` kişisi ${entry.executor} tarafından **${entry.reason ? entry.reason : "girilmedi"}** nedeni ile yasaklandı! \n${entry.executor} Banları: ${yashinukullanıcıban}`)
+        
+        if(yashinukullanıcıban >= yashinubanlimit) {
         
           try {
-            guild.member(log.executor).roles.filter(a => a.hasPermission('BAN_MEMBERS')).forEach(rol => guild.member(log.executor).removeRole(rol.id))
-          } catch(err) {
-          
-          }
-          db.delete(`banlimitP31_${log.executor.id}`)
+                guild.kick(entry.executor.id, "Ban Limit")
+client.channels.get(log).send(`Sunucundan bir yetkili ban limitine ulaştı ve sunucudan atıldı ! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)          } catch(err) { }
+          db.delete(`banlimitP31_${entry.executor.id}`)
         }
+      }
+    }
+  
 })
 
 
