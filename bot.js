@@ -557,6 +557,7 @@ client.on("message", async msg => {
         }
 })
 
+
 client.on("message", async message => {
   
   const kanal = db.fetch(`utsK_${message.channel.id+message.guild.id}`)
