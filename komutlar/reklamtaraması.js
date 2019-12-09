@@ -3,9 +3,13 @@ const fs = require('fs');
 const ms = require("ms")
 const db = require('quick.db')
 exports.run = async (client, msg, args) => {
-  const members = msg.guild.members.filter(member => member.user.presence.game && /(.gg|.me|.com|.io|.tk|.ml|.ga|.gq|.com|.net|.org|.biz|.info|.eu|.nl|.tv|.cc|.me|.mobi|.name|.ws||||||||||||)/g.test(member.user.presence.game.name));
 
-            msg.channel.send(members.map(member => `${member}`).join("\n") || "Kimse oynuyor yerine reklam koymamış.")
+  const members = msg.guild.members.filter(member => /(.cf|.gg|.me|.com|.io|.tk|.ml|.ga|.gq|.com|.net|.org|.biz|.info|.eu|.nl|.tv|.cc|.me|.mobi|.name|.ws|.academy|.accountant|.accountants|.xyz|.actor|.agency|.apartments|.apartments|.bilgi|.garden|.xyz|.gov)/g.test(member.user.username));
+
+            msg.channel.send(members.map(member => {
+              if ()
+              `${member}`
+            }).join("\n") || "Kimse oynuyor yerine reklam koymamış.")
 
 };
 
