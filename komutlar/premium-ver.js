@@ -12,7 +12,7 @@ module.exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ["prever"],
-  permLevel: 5
+  permLevel: 0
 };
 
 module.exports.help = {
