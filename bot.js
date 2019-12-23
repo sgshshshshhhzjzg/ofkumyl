@@ -357,7 +357,7 @@ const cooldown = new Set();
 client.on("message", msg => {
   if (client.user.id == msg.author.id) return;
 if (msg.member.hasPermission("MANAGE_MESSAGES")) return; 
-  AntiSpam(client, msg);
+  AntiSpam(client, msg);                                                           
   if (cooldown.has(msg.author.id)) {
     return;
   }
