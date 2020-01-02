@@ -4,6 +4,7 @@ const db = require('quick.db')
 
 exports.run = async(client, message, args) => {
   
+  
   const sayi = args[0]
   if (sayi >= 101) return message.reply("En Az `1 - 100` Arasında Bir Tam Sayı Değeri Girmelisiniz.")
 
