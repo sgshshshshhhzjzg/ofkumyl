@@ -218,6 +218,7 @@ client.on("guildMemberAdd", async member => {
     
   }
 });
+
 client.on("guildMemberRemove", async member => {
 
   const kanal = await db.fetch(`sayacK_${member.guild.id}`);
