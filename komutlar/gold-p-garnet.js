@@ -16,10 +16,10 @@ let kod31 = "";
  db.set(`goldpuan_${message.author.id}`, kod32)
     var user = message.author; 
   
-  Jimp.read(`https://cdn.discordapp.com/attachments/649581228835602432/650052923728068628/unknown.png`, async(err, image) => {
+  Jimp.read(`https://cdn.discordapp.com/attachments/655408338640699434/663057139199377422/depositphotos_66010155-stock-illustration-treasure-chest.jpg`, async(err, image) => {
     await image.resize(794, 598)
         var font = await Jimp.loadFont(Jimp.FONT_SANS_128_WHITE);
-        await image.print(font, 220, 309, kod31 + " GÜN");
+        await image.print(font, 125, 309, kod31 + " GÜN");
     Jimp.read(user.avatarURL, async(err, avatar) => {
         await avatar.resize(275, 275) 
       await image.composite(avatar, 269, 39).write(`./resimler/gold/gold-${message.author.id}.png`);
