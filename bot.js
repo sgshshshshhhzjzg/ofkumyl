@@ -242,17 +242,17 @@ client.on("guildMemberRemove", async member => {
 //Ban Limit
 client.on("guildBanAdd", async(guild, user) => {
   const entry = await guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then(audit => audit.entries.first())
-  let yashinubanlimit = await db.fetch(`banlimit31_${guild.id}`)
-  let yashinukullanıcıban = await db.fetch(`banlimitP31_${entry.executor.id}`)
+  let banlimit = await db.fetch(`banlimit31_${guild.id}`)
+  let kullanıcıban = await db.fetch(`banlimitP31_${entry.executor.id}`)
   const log = db.fetch(`korumaLog_${guild.id}`); 
-    if(yashinubanlimit) {
+    if(banlimit) {
       if(entry.executor.id !== guild.owner.user.id) {
         
         await db.add(`banlimitP31_${entry.executor.id}`, 1)
         
-        client.channels.get(log).send(`\`${user.id}\` - \`${user.tag}\` kişisi ${entry.executor} tarafından **${entry.reason ? entry.reason : "girilmedi"}** nedeni ile yasaklandı! \n${entry.executor} Banları: ${yashinukullanıcıban}`)
+        client.channels.get(log).send(`\`${user.id}\` - \`${user.tag}\` kişisi ${entry.executor} tarafından **${entry.reason ? entry.reason : "girilmedi"}** nedeni ile yasaklandı! \n${entry.executor} Banları: ${kullanıcıban}`)
         
-        if(yashinukullanıcıban >= yashinubanlimit) {
+        if(kullanıcıban >= banlimit) {
         
           try {
                 guild.kick(entry.executor.id, "Ban Limit")
@@ -269,17 +269,17 @@ client.channels.get(log).send(`Sunucundan bir yetkili ban limitine ulaştı ve s
 client.on("channelDelete", async(channel) => {
   const guild = channel.guild;
   const entry = await guild.fetchAuditLogs({type: 12}).then(audit => audit.entries.first())
-  let yashinukanallimit = await db.fetch(`klimit31_${guild.id}`)
-  let yashinukullanıcılimit = await db.fetch(`klimitP31_${entry.executor.id}`)
+  let kanallimit = await db.fetch(`klimit31_${guild.id}`)
+  let kullanıcılimit = await db.fetch(`klimitP31_${entry.executor.id}`)
   const log = db.fetch(`korumaLog_${guild.id}`); 
-    if(yashinukanallimit) {
+    if(kanallimit) {
       if(entry.executor.id !== guild.owner.user.id) {
         
         await db.add(`klimitP31_${entry.executor.id}`, 1)
         
         client.channels.get(log).send(`\`${channel.name}\` adlı kanal ${entry.executor} tarafından silindi!`)
         
-        if(yashinukullanıcılimit >= yashinukanallimit) {
+        if(kullanıcılimit >= kanallimit) {
                   try {
             client.channels.get(log).send(`Sunucundan bir yetkili kanal limitine ulaştı ve sunucudan atıldı ! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)
             guild.kick(entry.executor.id, "Kanal Limit")
@@ -296,17 +296,17 @@ client.on("channelDelete", async(channel) => {
 client.on("roleDelete", async(role) => {
   const guild = role.guild;
   const entry = await guild.fetchAuditLogs({type: 32}).then(audit => audit.entries.first())
-  let yashinukanallimit = await db.fetch(`rlimit31_${guild.id}`)
-  let yashinukullanıcılimit = await db.fetch(`rlimitP31_${entry.executor.id}`)
+  let kanallimit = await db.fetch(`rlimit31_${guild.id}`)
+  let kullanıcılimit = await db.fetch(`rlimitP31_${entry.executor.id}`)
   const log = db.fetch(`korumaLog_${guild.id}`); 
-    if(yashinukanallimit) {
+    if(kanallimit) {
       if(entry.executor.id !== guild.owner.user.id) {
         
         await db.add(`rlimitP31_${entry.executor.id}`, 1)
         
         client.channels.get(log).send(`\`${role.name}\` adlı rol ${entry.executor} tarafından silindi!`)
         
-        if(yashinukullanıcılimit >= yashinukanallimit) {
+        if(kullanıcılimit >= kanallimit) {
                   try {
             client.channels.get(log).send(`Sunucundan bir yetkili rol limitine ulaştı ve sunucudan atıldı ! İşte bilgileri => \n\n\`Kullanıcı:\`  ${entry.executor} | ${entry.executor.id} \n\`Discord'a ve Sunucuya Katılım Tarihi:\` \n• **Discord:** ${moment(entry.executor.createdAt).format('DD/MM/YYYY | HH:mm:ss')} • **Sunucu:** ${moment(guild.member(entry.executor).joinedAt).format('DD/MM/YYYY | HH:mm:ss')}`)
             guild.kick(entry.executor.id, "Rol Limit")
