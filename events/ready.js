@@ -12,7 +12,7 @@ module.exports = client => {
   //idle = boşta
   //dnd = rahatsız etmeyin
   //online = çevrimiçi
-  console.log(`                                                                                                                                                                     `)
+  console.log(`${client.user.id}                                                                                                                                                                     `)
   client.user.setActivity(`${prefix}yardım | ${client.guilds.size} sunucu | ${client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()} Kullanıcıyı`, { type: "LISTENING"});
   //LISTENING = DİNLİYOR
   //WATCHING = İZLİYOR
