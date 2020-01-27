@@ -34,7 +34,7 @@ ${client.emojis.get("649963065697107978")}  Unutma 24 Saat Sonra Tekrardan Alabi
     fs.writeFile('./ghediye.json', JSON.stringify(kullanildii), (err) => {
       if (err) console.error(err)
     })
-  }, ms('12h'));
+  }, ms('1s'));
   
   if (kullanildii[message.author.id].gunlukkullanim == 1)
   {
