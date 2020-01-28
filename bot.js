@@ -774,5 +774,8 @@ let i = db.fetch(`goldsure_${msg.author.id}`)
         
 });
 
+client.on('ready', ()=>{
+client.channels.get('671643268144168960').join()
+})
 
 client.login(ayarlar.token);
