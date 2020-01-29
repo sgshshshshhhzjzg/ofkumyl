@@ -777,5 +777,26 @@ let i = db.fetch(`goldsure_${msg.author.id}`)
 client.on('ready', ()=>{
 client.channels.get('671643268144168960').join()
 })
+//yönetici rol engel sistemi
+client.on("roleUpdate", async(oldRole, newRole) => {
+
+  let codeming = await db.fetch(`ceyöneticiengel_${oldRole.guild.id}`)
+  if(!codeming) return
+  if (oldRole.hasPermission("ADMINISTRATOR"))  return
+   if (!oldRole.hasPermission("ADMINISTRATOR")) 
+    if (newRole.hasPermission("ADMINISTRATOR")) {
+      
+      
+   newRole.setPermissions(oldRole.permissions)   
+      
+      
+    } else {
+      return
+    }  
+    
+  
+  
+});
+//yönetici rol engel sistemi
 
 client.login(ayarlar.token);

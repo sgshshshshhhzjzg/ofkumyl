@@ -18,7 +18,7 @@ module.exports = (client, msg) => {
     if (msg.deletable) msg.delete();
       const sendeddd = new Discord.RichEmbed()
         .setColor("BLUE")
-      .setAuthor("MC-EŞŞEK", client.user.AvatarURL)
+      .setAuthor("EMSİ-AT", client.user.AvatarURL)
         .setDescription(msg.author.tag + " spam yapmayı kes yoksa susturulursun!");
       msg.channel.send(sendeddd).then(stopspam => {
         setTimeout(() => {
