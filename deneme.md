@@ -1,0 +1,1 @@
+bak bu mc at direk vercem mk
