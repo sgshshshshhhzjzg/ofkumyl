@@ -549,7 +549,7 @@ client.on("message", async msg => {
   if (msg.content.length > 0) {
 
     if(msg.author.bot === true){
-      msg.delete(120000).then(
+      msg.delete(10000).then(
       
       )
     }
