@@ -174,22 +174,6 @@ client.on("guildMemberAdd", async member => {
 });
 
 
-client.on("guildMemberAdd", async member => {
-  let mesaj = db.fetch(`ototag_${member.guild.id}`);
-    if (!mesaj) {
-    return;
-  }
-
-  if (mesaj) {
-    var mesajs = mesaj.replace("-uye-", `${member.user.username}`);
-    if (!db.fetch(`isimtemizleyici_${member.guild.id}`)) {
-      return member.setNickname(mesajs)
-    }
-    
-    var mesajs31 = mesaj.replace("-uye-", `${member.user.username.replace(/[^a-zA-Z ]/g, "")}`);
-    return member.setNickname(mesajs31)
-     }
-});
 
 
 client.on("guildMemberAdd", async member => {
@@ -352,8 +336,6 @@ client.on('guildMemberAdd',async member => {
     chan.send(attachment)
 });
 
-const AntiSpam = require("./spamkorumasi.js");
-const cooldown = new Set();
 
 client.on("message", msg => {
   if (client.user.id == msg.author.id) return;
@@ -363,48 +345,6 @@ if (msg.member.hasPermission("MANAGE_MESSAGES")) return;
     return;
   }
 })  
-
-
-
-client.on('voiceStateUpdate', async(oldMember, newMember) => {
-  if (!db.fetch(`geciciKanal_${newMember.guild.id}`))
-  if (!db.fetch(`geciciKategori_${newMember.guild.id}`)) return;
-  let Old = oldMember;
-  let newUserChannel = newMember.voiceChannel
-  let oldUserChannel = oldMember.voiceChannel
- if(newMember.user.bot) return;
-    if(oldMember.user.bot) return;
-  
-  if (newMember.voiceChannelID == db.fetch(`geciciKanal_${newMember.guild.id}`)) {
-    newMember.guild.createChannel("💳|" + newMember.user.username, "voice").then(async(ü) => {
-    
-      ü.setParent(db.fetch(`geciciKategori_${newMember.guild.id}`))
-        newMember.setVoiceChannel(ü.id)      
-      db.set(`geciciKanalK_${newMember.id}`, ü.id)
-    })   
-    
-  }
-      
-   if (oldUserChannel) {
-        Old.guild.channels.forEach(channels => {
-  if (channels.id == db.fetch(`geciciKanal_${oldMember.guild.id}`)) return;
-          if(channels.parentID == db.fetch(`geciciKategori_${oldMember.guild.id}`)) {
-                        if(channels.id == db.fetch(`geciciKanalK_${oldMember.id}`)) {
-                          setTimeout(() => {
-                          if (!oldMember.voiceChannel.id == db.fetch(`geciciKanalK_${oldMember.id}`)) return;
-                          if(oldMember.voiceChannel.members.size == 0) {
-                            
-                              db.delete(`geciciKanalK_${oldMember.id}`)
-                              return channels.delete()
-                        }   
-                          
-                          }, 5000)
-                          
-                    }
-                }
-            });
-                   }
-});
 
 client.on("message", message => {
 
