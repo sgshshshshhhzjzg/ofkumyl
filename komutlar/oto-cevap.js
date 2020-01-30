@@ -4,7 +4,7 @@ const fs = require('fs');
 exports.run = async (client, message, args) => { 
   const customArgs = args.join(' ').split(" - ")
   let x = customArgs[1]
-  let prefix = "-"
+  let prefix = "!"
 	if(!customArgs[0]) {
     
 		message.channel.send("Lütfen eklemek istediğiniz komutu yazın.\nÖrnek : **`"+prefix+"oto-cevap-ekle komut - açıklama`**")
