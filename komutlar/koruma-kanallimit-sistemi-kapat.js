@@ -4,7 +4,7 @@ const db = require('quick.db')
 
 exports.run = async(client, message, args) => {
   if(message.author.id !== message.guild.owner.user.id) return message.channel.send('Yeterli Yetkiye Sahip Görünmüyorsun! '+client.emojis.get('647760202875142154'))
-  if (db.has(`premium_${message.guild.id}`) == false) {
+  if (db.has(`premium_${message.guild.id}`) == true) {
     message.channel.send(`<@${message.author.id}> Maalesef Premium Süresi Bitmiştir. Hizmetimizden Memnun Olduysanız Tekrar Alabilirsiniz \`!premium\``)
   } else {
   if (!db.fetch(`klimit31_${message.guild.id}`)) return message.channel.send(`${client.emojis.get('647760202875142154')} Olmayan Birşeyi Silemem :)
