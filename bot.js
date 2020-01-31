@@ -336,15 +336,7 @@ client.on('guildMemberAdd',async member => {
     chan.send(attachment)
 });
 
-
-client.on("message", msg => {
-  if (client.user.id == msg.author.id) return;
-if (msg.member.hasPermission("MANAGE_MESSAGES")) return; 
-  AntiSpam(client, msg);                                                           
-  if (cooldown.has(msg.author.id)) {
-    return;
-  }
-})  
+ 
 
 client.on("message", message => {
 
