@@ -6,10 +6,10 @@ exports.run = async(client, message, args) => {
   
   
   const sayi = args[0]
-  if (sayi >= 101) return message.reply("En Az `1 - 100` Arasında Bir Tam Sayı Değeri Girmelisiniz.")
+  if (sayi > 400) return message.reply("En Az `1 - 100` Arasında Bir Tam Sayı Değeri Girmelisiniz.")
 
   let messages = await message.channel.fetchMessages({
-    limit: sayi
+    limit: 400
   });
 
      let mesaj = await message.channel.bulkDelete(messages, true);

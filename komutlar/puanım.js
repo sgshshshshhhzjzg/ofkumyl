@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require("quick.db")
 exports.run = async(client, message, args) => {
 
-  if (!db.fetch(`goldpuan_${message.author.id}`)) {
+  if (!await db.fetch(`goldpuan_${message.author.id}`)) {
     
  return message.reply("Puanınız: 0 " + client.emojis.get("649963065697107978"))
   }

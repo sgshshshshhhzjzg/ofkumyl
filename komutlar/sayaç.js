@@ -17,7 +17,7 @@ const embed = new Discord.RichEmbed()
 -kalanuye- 》 Hedefe Kaç Kişi Kalmış Gösterir.
 -hedefuye- 》 Hedef Rakamı Gösterir.
 `)
-     .setFooter('© STARK-ZEHİR',client.user.avatarURL)
+     .setFooter('© MC-AT',client.user.avatarURL)
 .setTimestamp()
  message.channel.send(embed) 
   };
