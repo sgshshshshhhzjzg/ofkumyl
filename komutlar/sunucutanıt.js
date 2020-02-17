@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
         .setTimestamp()
       .setThumbnail(message.guild.iconURL)
-       client.channels.get('648071564964921344').send(embed)
+       client.channels.get('678150780058075146').send(embed)
             });
   kullanildii[message.guild.id].gunlukkullanim = 1
     
