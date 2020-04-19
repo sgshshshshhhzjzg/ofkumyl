@@ -16,7 +16,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'linkengelaç',
+  name: 'linkaç',
   description: 'sayaç', 
   usage: 'sayaç'
 };
