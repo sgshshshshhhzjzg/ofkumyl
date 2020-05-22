@@ -44,12 +44,12 @@ Sunucunuz İçin Koruma Sistemleri.
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["yt","help","h","help"],
+  aliases: ["yardım","help","h","help"],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'yt',
+  name: 'yardım',
   description: 'Yardım Menüsünü Gösterir.',
-  usage: 'yt'
+  usage: 'yardım'
 };
