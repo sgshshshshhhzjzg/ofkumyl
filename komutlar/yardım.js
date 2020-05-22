@@ -4,9 +4,9 @@ exports.run = async(client, message, args) => {
  
  const Embed = new Discord.RichEmbed()
  .setTimestamp()
- .setAuthor("EŞŞEK-AT", client.user.avatarURL)
+ .setAuthor("YT-at", client.user.avatarURL)
 .setColor("BLUE")
-.setTitle("EŞŞEK-AT BOT")
+.setTitle("YT-at BOT")
  .setURL("https://discordapp.com/oauth2/authorize?client_id=647386467844227074&scope=bot&permissions=8")
  .setDescription(`
 
@@ -44,12 +44,12 @@ Sunucunuz İçin Koruma Sistemleri.
 module.exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["yardım","help","h","help"],
+  aliases: ["yt","help","h","help"],
   permLevel: 0
 };
 
 module.exports.help = {
-  name: 'yardım',
+  name: 'yt',
   description: 'Yardım Menüsünü Gösterir.',
-  usage: 'yardım'
+  usage: 'yt'
 };
