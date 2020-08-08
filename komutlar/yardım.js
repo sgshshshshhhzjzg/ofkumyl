@@ -6,7 +6,7 @@ exports.run = async(client, message, args) => {
  .setTimestamp()
  .setAuthor("YT-at", client.user.avatarURL)
 .setColor("BLUE")
-.setTitle("𝐇𝐀𝐑𝐌𝐎𝐍𝐘 𝐁𝐋𝐎𝐂𝐊𝐄𝐑 𝐘𝐀𝐑𝐃𝐈𝐌 𝐌𝐄𝐍𝐔𝐒𝐔")
+.setTitle("MC-AT YARDİM MENÜSÜ")
  .setURL("https://discordapp.com/oauth2/authorize?client_id=647386467844227074&scope=bot&permissions=8")
  .setDescription(`
 
