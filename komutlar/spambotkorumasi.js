@@ -4,7 +4,7 @@ exports.run = (client, message, args) => {
   
 
 
-message.channel.send(`MC-EŞŞEK Botun Sunucunuzu Böyle Koruması İçin YÖNETİCİ Yetkisi Olmalı Ve Sonrasında Kendiliğinden Saldırıları Önler.
+message.channel.send(`GAMER Botun Sunucunuzu Böyle Koruması İçin YÖNETİCİ Yetkisi Olmalı Ve Sonrasında Kendiliğinden Saldırıları Önler.
 https://youtu.be/QTE84_-4jb0`) 
   };
 exports.conf = {
